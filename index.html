@@ -36,7 +36,7 @@
             min-height: 100vh;
         }
 
-        /* Animated Background */
+        /* Gardening Themed Animated Background */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -66,21 +66,79 @@
             height: 100%;
         }
 
-        .floating-orb {
+        .floating-leaf {
             position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(74, 222, 128, 0.6), 
-                rgba(34, 197, 94, 0.3), 
-                rgba(22, 163, 74, 0.1));
-            filter: blur(2px);
-            animation: float 8s ease-in-out infinite;
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: float 10s ease-in-out infinite;
         }
 
-        .orb-1 { width: 400px; height: 400px; top: 10%; left: -10%; animation-delay: 0s; }
-        .orb-2 { width: 300px; height: 300px; top: 70%; right: -15%; animation-delay: 3s; }
-        .orb-3 { width: 200px; height: 200px; top: 40%; right: 30%; animation-delay: 6s; }
-        .orb-4 { width: 150px; height: 150px; top: 20%; left: 60%; animation-delay: 9s; }
+        .leaf-1 { 
+            width: 80px; 
+            height: 80px; 
+            top: 10%; 
+            left: -10%; 
+            animation-delay: 0s;
+            background: url('https://picsum.photos/seed/leaf1/80/80.jpg') no-repeat center center;
+            background-size: contain;
+        }
+        
+        .leaf-2 { 
+            width: 60px; 
+            height: 60px; 
+            top: 70%; 
+            right: -15%; 
+            animation-delay: 3s;
+            background: url('https://picsum.photos/seed/leaf2/60/60.jpg') no-repeat center center;
+            background-size: contain;
+        }
+        
+        .leaf-3 { 
+            width: 70px; 
+            height: 70px; 
+            top: 40%; 
+            right: 30%; 
+            animation-delay: 6s;
+            background: url('https://picsum.photos/seed/leaf3/70/70.jpg') no-repeat center center;
+            background-size: contain;
+        }
+        
+        .leaf-4 { 
+            width: 50px; 
+            height: 50px; 
+            top: 20%; 
+            left: 60%; 
+            animation-delay: 9s;
+            background: url('https://picsum.photos/seed/leaf4/50/50.jpg') no-repeat center center;
+            background-size: contain;
+        }
+
+        .floating-plant {
+            position: absolute;
+            opacity: 0.6;
+            filter: blur(2px);
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .plant-1 { 
+            width: 120px; 
+            height: 120px; 
+            bottom: 10%; 
+            left: 5%; 
+            animation-delay: 2s;
+            background: url('https://picsum.photos/seed/plant1/120/120.jpg') no-repeat center center;
+            background-size: contain;
+        }
+        
+        .plant-2 { 
+            width: 100px; 
+            height: 100px; 
+            bottom: 20%; 
+            right: 10%; 
+            animation-delay: 5s;
+            background: url('https://picsum.photos/seed/plant2/100/100.jpg') no-repeat center center;
+            background-size: contain;
+        }
 
         @keyframes rotate {
             0% { transform: rotate(0deg); }
@@ -88,10 +146,10 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-            25% { transform: translate(30px, -40px) scale(1.1); opacity: 1; }
-            50% { transform: translate(-20px, -80px) scale(0.9); opacity: 0.6; }
-            75% { transform: translate(-40px, -40px) scale(1.05); opacity: 0.9; }
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.7; }
+            25% { transform: translate(30px, -40px) scale(1.1) rotate(5deg); opacity: 0.9; }
+            50% { transform: translate(-20px, -80px) scale(0.9) rotate(-5deg); opacity: 0.5; }
+            75% { transform: translate(-40px, -40px) scale(1.05) rotate(3deg); opacity: 0.8; }
         }
 
         /* Glass Morphism Header */
@@ -115,16 +173,16 @@
         .header-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: grid;
             grid-template-columns: auto 1fr auto;
             align-items: center;
-            gap: 3rem;
-            height: 80px;
+            gap: 1rem;
+            height: 70px;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--accent-green), var(--secondary-green), var(--primary-green));
             -webkit-background-clip: text;
@@ -153,19 +211,20 @@
 
         .search-container {
             position: relative;
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
+            display: none;
         }
 
         .search-box {
             width: 100%;
-            padding: 1rem 3.5rem 1rem 1.5rem;
+            padding: 0.8rem 2.5rem 0.8rem 1rem;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 50px;
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -188,11 +247,11 @@
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
             border: none;
             border-radius: 50px;
-            padding: 0.8rem 1.2rem;
+            padding: 0.6rem 0.8rem;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
         .search-btn:hover {
@@ -203,7 +262,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 0.8rem;
         }
 
         .action-btn {
@@ -212,14 +271,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
@@ -233,14 +292,14 @@
 
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -6px;
+            right: -6px;
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 0.75rem;
+            width: 18px;
+            height: 18px;
+            font-size: 0.65rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -248,36 +307,87 @@
             animation: pulse 2s infinite;
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--secondary-green);
+            border-color: var(--accent-green);
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: var(--text-primary);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Navigation */
         .navigation {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
-            margin-top: 80px;
+            margin-top: 70px;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .nav-item {
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-link {
             display: block;
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.2rem;
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -303,44 +413,71 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        /* Hero Section with Image Banner */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
-            padding: 8rem 0 4rem;
+            padding: 6rem 0 2rem;
+        }
+
+        .hero-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(0, 0, 0, 0.7));
+            z-index: 1;
         }
 
         .hero-content {
             max-width: 1200px;
-            padding: 0 2rem;
+            padding: 0 1rem;
             z-index: 10;
             position: relative;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.8rem 2rem;
+            padding: 0.6rem 1.5rem;
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
             border-radius: 50px;
             color: var(--accent-green);
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
             animation: slideInDown 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, 
                 var(--text-primary) 0%, 
                 var(--accent-green) 30%, 
@@ -353,9 +490,9 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -364,7 +501,7 @@
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
             animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
@@ -372,10 +509,10 @@
 
         .btn {
             position: relative;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
@@ -410,21 +547,68 @@
             box-shadow: var(--shadow-light);
         }
 
+        /* Product Banner */
+        .product-banner {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 1400px;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .product-banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.7), rgba(21, 128, 61, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .product-banner-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+        }
+
+        .product-banner-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-banner-description {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* Categories Section */
         .categories {
-            padding: 8rem 0;
+            padding: 4rem 0;
             position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--text-primary), var(--secondary-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -432,7 +616,7 @@
         }
 
         .section-description {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -441,10 +625,10 @@
         .categories-grid {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .category-card {
@@ -452,8 +636,8 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
+            border-radius: 20px;
+            padding: 2rem;
             text-decoration: none;
             color: inherit;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -484,15 +668,15 @@
         }
 
         .category-icon {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            border-radius: 24px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2rem;
-            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
             transition: all 0.3s ease;
         }
 
@@ -502,38 +686,38 @@
         }
 
         .category-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
         }
 
         .category-description {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
         /* Products Section */
         .products {
-            padding: 8rem 0;
+            padding: 4rem 0;
             background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.02) 100%);
         }
 
         .products-grid {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .product-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -547,7 +731,7 @@
         }
 
         .product-image {
-            height: 280px;
+            height: 200px;
             background: linear-gradient(135deg, 
                 rgba(74, 222, 128, 0.1), 
                 rgba(34, 197, 94, 0.1), 
@@ -555,7 +739,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--secondary-green);
             position: relative;
             overflow: hidden;
@@ -573,34 +757,35 @@
         }
 
         .product-info {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .product-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             color: var(--text-primary);
         }
 
         .product-price {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--secondary-green);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .product-rating {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .stars {
             color: #fbbf24;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .add-to-cart {
@@ -608,10 +793,10 @@
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -629,13 +814,13 @@
 
         .sale-badge {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.8rem;
+            left: 0.8rem;
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 700;
             z-index: 10;
             animation: pulse 2s infinite;
@@ -643,21 +828,21 @@
 
         /* Features Section */
         .features {
-            padding: 8rem 0;
+            padding: 4rem 0;
         }
 
         .features-grid {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .feature-item {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
@@ -671,16 +856,16 @@
         }
 
         .feature-icon {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
             transition: all 0.3s ease;
         }
 
@@ -690,21 +875,89 @@
         }
 
         .feature-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
         }
 
         .feature-description {
             color: var(--text-secondary);
             line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.02) 100%);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--secondary-green);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         /* Newsletter Section */
         .newsletter {
             background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            padding: 6rem 0;
+            padding: 4rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -724,21 +977,21 @@
         .newsletter-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             position: relative;
             z-index: 10;
         }
 
         .newsletter-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: white;
         }
 
         .newsletter-description {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.9);
         }
 
@@ -746,20 +999,20 @@
             display: flex;
             max-width: 500px;
             margin: 0 auto;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .newsletter-input {
             flex: 1;
             min-width: 250px;
-            padding: 1.2rem 1.5rem;
+            padding: 1rem 1.2rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
             color: white;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
         }
@@ -777,11 +1030,12 @@
             background: white;
             color: var(--primary-green);
             border: none;
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .newsletter-btn:hover {
@@ -792,24 +1046,24 @@
         /* Footer */
         .footer {
             background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-            padding: 6rem 0 2rem;
+            padding: 4rem 0 2rem;
             border-top: 1px solid var(--glass-border);
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--secondary-green);
         }
 
@@ -819,6 +1073,7 @@
             text-decoration: none;
             line-height: 1.8;
             transition: color 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .footer-section a:hover {
@@ -827,9 +1082,10 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 3rem;
+            padding-top: 2rem;
             border-top: 1px solid var(--glass-border);
             color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
 
         /* Animations */
@@ -863,28 +1119,66 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .header-container {
-                grid-template-columns: auto 1fr;
-                gap: 2rem;
+                grid-template-columns: auto 1fr auto;
+                gap: 1rem;
+                padding: 0 1rem;
             }
             
-            .header-actions {
-                grid-column: 1 / -1;
-                justify-content: center;
-                margin-top: 1rem;
-            }
-            
-            .header {
-                height: auto;
+            .search-container {
+                display: block;
             }
             
             .navigation {
-                margin-top: 120px;
+                margin-top: 70px;
             }
         }
 
         @media (max-width: 768px) {
+            .header-container {
+                grid-template-columns: auto 1fr auto;
+                height: 60px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .search-container {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .navigation {
+                margin-top: 60px;
+                height: 0;
+                overflow: hidden;
+            }
+            
+            .navigation.active {
+                height: auto;
+            }
+            
             .nav-menu {
                 flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .hero {
+                min-height: 70vh;
+                padding: 5rem 0 2rem;
             }
             
             .hero-buttons {
@@ -894,7 +1188,7 @@
             
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
                 justify-content: center;
             }
             
@@ -911,6 +1205,40 @@
             .products-grid,
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 0.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0 1rem;
+            }
+            
+            .section-header {
+                margin-bottom: 2rem;
+            }
+            
+            .categories,
+            .products,
+            .features,
+            .faq {
+                padding: 3rem 0;
+            }
+            
+            .newsletter {
+                padding: 3rem 0;
+            }
+            
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
@@ -971,14 +1299,16 @@
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Animated Background -->
+    <!-- Gardening Themed Animated Background -->
     <div class="animated-bg">
         <div class="bg-gradient"></div>
         <div class="floating-elements">
-            <div class="floating-orb orb-1"></div>
-            <div class="floating-orb orb-2"></div>
-            <div class="floating-orb orb-3"></div>
-            <div class="floating-orb orb-4"></div>
+            <div class="floating-leaf leaf-1"></div>
+            <div class="floating-leaf leaf-2"></div>
+            <div class="floating-leaf leaf-3"></div>
+            <div class="floating-leaf leaf-4"></div>
+            <div class="floating-plant plant-1"></div>
+            <div class="floating-plant plant-2"></div>
         </div>
     </div>
 
@@ -999,12 +1329,17 @@
                     🛒
                     <span class="cart-count">3</span>
                 </button>
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="navigation">
+    <nav class="navigation" id="navigation">
         <div class="nav-container">
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#" class="nav-link">New Arrivals</a></li>
@@ -1018,8 +1353,12 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Image Banner -->
     <section class="hero">
+        <div class="hero-banner">
+            <img src="https://picsum.photos/seed/gardening-hero/1920/1080.jpg" alt="Gardening Hero Banner" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
             <div class="hero-badge">✨ Premium Organic Collection</div>
             <h1 class="hero-title">Nature's Finest Products</h1>
@@ -1035,6 +1374,18 @@
         </div>
     </section>
 
+    <!-- Product Banner -->
+    <div class="product-banner">
+        <img src="https://picsum.photos/seed/gardening-banner/1400/300.jpg" alt="Gardening Products Banner" class="product-banner-image">
+        <div class="product-banner-overlay">
+            <div class="product-banner-content">
+                <h2 class="product-banner-title">Summer Garden Sale</h2>
+                <p class="product-banner-description">Get up to 40% off on selected gardening essentials. Limited time offer!</p>
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Categories Section -->
     <section class="categories" id="categories">
         <div class="section-header">
@@ -1043,34 +1394,39 @@
         </div>
         <div class="categories-grid">
             <a href="#" class="category-card">
+                <div class="category-icon">💧</div>
+                <h3 class="category-title">Drip Irrigation Kit</h3>
+                <p class="category-description">Complete drip irrigation systems for efficient watering. Save water while keeping your plants perfectly hydrated.</p>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">🪴</div>
+                <h3 class="category-title">Pots & Planters</h3>
+                <p class="category-description">Stylish and functional pots and planters for all your indoor and outdoor gardening needs.</p>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">🪑</div>
+                <h3 class="category-title">Stands</h3>
+                <p class="category-description">Elegant plant stands to display your green beauties at the perfect height and angle.</p>
+            </a>
+            <a href="#" class="category-card">
                 <div class="category-icon">🌱</div>
-                <h3 class="category-title">Organic Seeds</h3>
-                <p class="category-description">Premium heirloom and organic seeds for your garden. Grow your own healthy, chemical-free vegetables and herbs.</p>
+                <h3 class="category-title">Soil & Fertilizers</h3>
+                <p class="category-description">Premium organic soil blends and natural fertilizers to nourish your plants from root to leaf.</p>
             </a>
             <a href="#" class="category-card">
                 <div class="category-icon">🌿</div>
-                <h3 class="category-title">Indoor Plants</h3>
-                <p class="category-description">Beautiful air-purifying plants that bring nature indoors. Perfect for modern homes and offices.</p>
+                <h3 class="category-title">Plant Support</h3>
+                <p class="category-description">Trellises, stakes, and supports to help your plants grow strong and healthy.</p>
             </a>
             <a href="#" class="category-card">
                 <div class="category-icon">🛠️</div>
-                <h3 class="category-title">Garden Tools</h3>
+                <h3 class="category-title">Gardening Tools</h3>
                 <p class="category-description">Professional-grade, sustainable gardening tools made from eco-friendly materials.</p>
             </a>
             <a href="#" class="category-card">
-                <div class="category-icon">🌺</div>
-                <h3 class="category-title">Plant Care</h3>
-                <p class="category-description">Natural fertilizers, organic pest control, and eco-friendly plant care solutions.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🥬</div>
-                <h3 class="category-title">Organic Food</h3>
-                <p class="category-description">Fresh, certified organic produce and artisanal food products from local farmers.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">♻️</div>
-                <h3 class="category-title">Eco Products</h3>
-                <p class="category-description">Sustainable lifestyle products that reduce environmental impact without compromising quality.</p>
+                <div class="category-icon">🚿</div>
+                <h3 class="category-title">Watering Equipment</h3>
+                <p class="category-description">Efficient watering solutions from cans to sprinklers for all your plant care needs.</p>
             </a>
         </div>
     </section>
@@ -1195,6 +1551,87 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-description">Find answers to common questions about G V Green products and services</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    What payment methods does G V Green accept?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        G V Green accepts all major credit cards, debit cards, net banking, UPI, and popular digital wallets including Paytm, Google Pay, and PhonePe. We also offer cash on delivery for orders below ₹5,000.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long does delivery take?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Standard delivery takes 5-7 business days, while express delivery takes 2-3 business days. For plants and live products, we use special shipping to ensure they arrive in perfect condition, which may take an additional day.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I return or exchange products?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes, G V Green offers a 30-day return policy for most products. Plants can be returned within 7 days of delivery if they arrive damaged or unhealthy. Simply contact our customer service team to initiate a return or exchange.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are your products really organic?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Absolutely! All our organic products are certified by recognized authorities. We work directly with certified organic farmers and manufacturers to ensure the highest quality standards. Each product comes with proper certification information.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you provide gardening guidance?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes, G V Green offers comprehensive gardening support through our blog, video tutorials, and expert consultation services. You can schedule a virtual consultation with our horticulture experts for personalized gardening advice.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you ship plants all over India?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We ship plants to most major cities and towns across India. However, due to agricultural regulations, we cannot ship certain plant varieties to some states. Please check our shipping policy or contact customer service for specific location information.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Newsletter Section -->
     <section class="newsletter">
         <div class="newsletter-content">
@@ -1226,15 +1663,17 @@
             </div>
             <div class="footer-section">
                 <h3>Product Categories</h3>
-                <p><a href="#">Organic Seeds</a></p>
-                <p><a href="#">Indoor Plants</a></p>
-                <p><a href="#">Garden Tools</a></p>
-                <p><a href="#">Plant Care</a></p>
-                <p><a href="#">Eco Products</a></p>
+                <p><a href="#">Drip Irrigation Kit</a></p>
+                <p><a href="#">Pots & Planters</a></p>
+                <p><a href="#">Stands</a></p>
+                <p><a href="#">Soil & Fertilizers</a></p>
+                <p><a href="#">Plant Support</a></p>
+                <p><a href="#">Gardening Tools</a></p>
+                <p><a href="#">Watering Equipment</a></p>
             </div>
             <div class="footer-section">
                 <h3>Get in Touch</h3>
-                <p>📍 123 Green Valley, Bengaluru, Karnataka 560001</p>
+                <p>📍 No. 160, 2nd cross, Shiva Nivas, Krishna Garden, Incity layout, Dodda Kammanahalli, Bannerghatta Rd, Bengaluru, Karnataka 560083</p>
                 <p>📞 +91 98765 43210</p>
                 <p>✉️ hello@gvgreen.com</p>
                 <p>🕒 Mon-Sat: 9:00 AM - 7:00 PM</p>
@@ -1252,6 +1691,23 @@
             setTimeout(() => {
                 loading.classList.add('hidden');
             }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navigation = document.getElementById('navigation');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navigation.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                navigation.classList.remove('active');
+            });
         });
 
         // Scroll Progress Bar
@@ -1348,6 +1804,24 @@
             }
         });
 
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1378,9 +1852,9 @@
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.3;
             
-            document.querySelectorAll('.floating-orb').forEach((orb, index) => {
+            document.querySelectorAll('.floating-leaf, .floating-plant').forEach((element, index) => {
                 const speed = 0.5 + (index * 0.2);
-                orb.style.transform = `translateY(${rate * speed}px)`;
+                element.style.transform = `translateY(${rate * speed}px)`;
             });
         });
 
@@ -1400,7 +1874,7 @@
         }, observerOptions);
 
         // Apply animation to sections
-        document.querySelectorAll('.category-card, .product-card, .feature-item').forEach(el => {
+        document.querySelectorAll('.category-card, .product-card, .feature-item, .faq-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
