@@ -29,127 +29,100 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: radial-gradient(ellipse at top, #0f172a 0%, #0c0a09 50%, #000000 100%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(22, 163, 74, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a2e0a 0%, #0d1f0d 30%, #0a0a0a 100%);
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
         }
 
-        /* Gardening Themed Animated Background */
-        .animated-bg {
+        /* Gardening Abstract Background Pattern */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(34, 197, 94, 0.03) 35px, rgba(34, 197, 94, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(74, 222, 128, 0.02) 35px, rgba(74, 222, 128, 0.02) 70px);
             z-index: -2;
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(70px, 70px); }
+        }
+
+        /* Floating Gardening Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             overflow: hidden;
         }
 
-        .bg-gradient {
+        .floating-shape {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, 
-                rgba(22, 163, 74, 0.1) 0deg, 
-                rgba(34, 197, 94, 0.2) 90deg, 
-                rgba(74, 222, 128, 0.1) 180deg, 
-                rgba(16, 185, 129, 0.15) 270deg, 
-                rgba(22, 163, 74, 0.1) 360deg);
-            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
         }
 
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-leaf {
-            position: absolute;
-            opacity: 0.7;
-            filter: blur(1px);
-            animation: float 10s ease-in-out infinite;
-        }
-
-        .leaf-1 { 
-            width: 80px; 
-            height: 80px; 
-            top: 10%; 
-            left: -10%; 
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle, var(--secondary-green), transparent);
+            border-radius: 50%;
             animation-delay: 0s;
-            background: url('https://picsum.photos/seed/leaf1/80/80.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        
-        .leaf-2 { 
-            width: 60px; 
-            height: 60px; 
-            top: 70%; 
-            right: -15%; 
-            animation-delay: 3s;
-            background: url('https://picsum.photos/seed/leaf2/60/60.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        
-        .leaf-3 { 
-            width: 70px; 
-            height: 70px; 
-            top: 40%; 
-            right: 30%; 
-            animation-delay: 6s;
-            background: url('https://picsum.photos/seed/leaf3/70/70.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        
-        .leaf-4 { 
-            width: 50px; 
-            height: 50px; 
-            top: 20%; 
-            left: 60%; 
-            animation-delay: 9s;
-            background: url('https://picsum.photos/seed/leaf4/50/50.jpg') no-repeat center center;
-            background-size: contain;
         }
 
-        .floating-plant {
-            position: absolute;
-            opacity: 0.6;
-            filter: blur(2px);
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .plant-1 { 
-            width: 120px; 
-            height: 120px; 
-            bottom: 10%; 
-            left: 5%; 
-            animation-delay: 2s;
-            background: url('https://picsum.photos/seed/plant1/120/120.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        
-        .plant-2 { 
-            width: 100px; 
-            height: 100px; 
-            bottom: 20%; 
-            right: 10%; 
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            background: radial-gradient(circle, var(--accent-green), transparent);
+            border-radius: 50%;
             animation-delay: 5s;
-            background: url('https://picsum.photos/seed/plant2/100/100.jpg') no-repeat center center;
-            background-size: contain;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            bottom: 20%;
+            left: 15%;
+            background: radial-gradient(circle, var(--primary-green), transparent);
+            border-radius: 50%;
+            animation-delay: 10s;
+        }
+
+        .shape-4 {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            right: 30%;
+            background: radial-gradient(circle, var(--dark-green), transparent);
+            border-radius: 50%;
+            animation-delay: 15s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.7; }
-            25% { transform: translate(30px, -40px) scale(1.1) rotate(5deg); opacity: 0.9; }
-            50% { transform: translate(-20px, -80px) scale(0.9) rotate(-5deg); opacity: 0.5; }
-            75% { transform: translate(-40px, -40px) scale(1.05) rotate(3deg); opacity: 0.8; }
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            25% { transform: translate(30px, -50px) scale(1.1); opacity: 0.15; }
+            50% { transform: translate(-30px, -100px) scale(0.9); opacity: 0.05; }
+            75% { transform: translate(-50px, -50px) scale(1.05); opacity: 0.12; }
         }
 
         /* Glass Morphism Header */
@@ -159,14 +132,14 @@
             width: 100%;
             z-index: 1000;
             backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(10, 46, 10, 0.8);
             border-bottom: 1px solid var(--glass-border);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .header.scrolled {
             backdrop-filter: blur(30px) saturate(200%);
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(10, 46, 10, 0.95);
             box-shadow: var(--shadow-light);
         }
 
@@ -368,12 +341,12 @@
             list-style: none;
             gap: 0;
             overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         .nav-menu::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
         }
 
         .nav-item {
@@ -413,7 +386,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Section with Image Banner */
+        /* Hero Section with Image Slideshow */
         .hero {
             min-height: 80vh;
             display: flex;
@@ -423,23 +396,36 @@
             position: relative;
             overflow: hidden;
             padding: 6rem 0 2rem;
+            margin-top: 70px;
         }
 
-        .hero-banner {
+        .hero-slider {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
         }
 
-        .hero-image {
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
         }
 
         .hero-overlay {
@@ -448,7 +434,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(0, 0, 0, 0.7));
+            background: linear-gradient(135deg, rgba(10, 46, 10, 0.8), rgba(0, 0, 0, 0.7));
             z-index: 1;
         }
 
@@ -545,6 +531,136 @@
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-5px);
             box-shadow: var(--shadow-light);
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--secondary-green);
+            transform: scale(1.2);
+        }
+
+        /* Category Products Banner */
+        .category-banner {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(21, 128, 61, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .category-banner-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .category-banner-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .category-banner-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-banner-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .category-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-banner-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category-banner-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .category-banner-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-banner-item:hover .category-banner-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-light);
+        }
+
+        .category-banner-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-banner-count {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
         /* Product Banner */
@@ -954,98 +1070,9 @@
             font-size: 0.95rem;
         }
 
-        /* Newsletter Section */
-        .newsletter {
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            padding: 4rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        .newsletter-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .newsletter-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
-            color: white;
-        }
-
-        .newsletter-description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .newsletter-input:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
-        }
-
-        .newsletter-btn {
-            background: white;
-            color: var(--primary-green);
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-        }
-
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            background: linear-gradient(135deg, #0a2e0a, #0d1f0d);
             padding: 4rem 0 2rem;
             border-top: 1px solid var(--glass-border);
         }
@@ -1114,6 +1141,11 @@
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive Design */
@@ -1192,13 +1224,8 @@
                 justify-content: center;
             }
             
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-input,
-            .newsletter-btn {
-                width: 100%;
+            .category-banner-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
             
             .categories-grid,
@@ -1228,7 +1255,7 @@
                 padding: 3rem 0;
             }
             
-            .newsletter {
+            .category-banner {
                 padding: 3rem 0;
             }
             
@@ -1261,7 +1288,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f172a, #000000);
+            background: linear-gradient(135deg, #0a2e0a, #0d1f0d);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1299,17 +1326,12 @@
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Gardening Themed Animated Background -->
-    <div class="animated-bg">
-        <div class="bg-gradient"></div>
-        <div class="floating-elements">
-            <div class="floating-leaf leaf-1"></div>
-            <div class="floating-leaf leaf-2"></div>
-            <div class="floating-leaf leaf-3"></div>
-            <div class="floating-leaf leaf-4"></div>
-            <div class="floating-plant plant-1"></div>
-            <div class="floating-plant plant-2"></div>
-        </div>
+    <!-- Gardening Abstract Background -->
+    <div class="floating-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
     </div>
 
     <!-- Header -->
@@ -1353,12 +1375,23 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Image Banner -->
+    <!-- Hero Section with Image Slideshow -->
     <section class="hero">
-        <div class="hero-banner">
-            <img src="https://picsum.photos/seed/gardening-hero/1920/1080.jpg" alt="Gardening Hero Banner" class="hero-image">
-            <div class="hero-overlay"></div>
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="https://picsum.photos/seed/garden1/1920/1080.jpg" alt="Garden Scene 1">
+            </div>
+            <div class="hero-slide">
+                <img src="https://picsum.photos/seed/garden2/1920/1080.jpg" alt="Garden Scene 2">
+            </div>
+            <div class="hero-slide">
+                <img src="https://picsum.photos/seed/garden3/1920/1080.jpg" alt="Garden Scene 3">
+            </div>
+            <div class="hero-slide">
+                <img src="https://picsum.photos/seed/garden4/1920/1080.jpg" alt="Garden Scene 4">
+            </div>
         </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">✨ Premium Organic Collection</div>
             <h1 class="hero-title">Nature's Finest Products</h1>
@@ -1369,6 +1402,64 @@
                 </a>
                 <a href="#categories" class="btn btn-secondary">
                     📋 View Categories
+                </a>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <span class="slider-dot active" data-slide="0"></span>
+            <span class="slider-dot" data-slide="1"></span>
+            <span class="slider-dot" data-slide="2"></span>
+            <span class="slider-dot" data-slide="3"></span>
+        </div>
+    </section>
+
+    <!-- Category Products Banner -->
+    <section class="category-banner">
+        <div class="category-banner-content">
+            <div class="category-banner-header">
+                <h2 class="category-banner-title">Shop by Category</h2>
+                <p class="category-banner-description">Browse our wide range of gardening essentials</p>
+            </div>
+            <div class="category-banner-grid">
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">💧</div>
+                    <div class="category-banner-name">Irrigation</div>
+                    <div class="category-banner-count">45 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🪴</div>
+                    <div class="category-banner-name">Planters</div>
+                    <div class="category-banner-count">128 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🪑</div>
+                    <div class="category-banner-name">Stands</div>
+                    <div class="category-banner-count">67 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🌱</div>
+                    <div class="category-banner-name">Soil</div>
+                    <div class="category-banner-count">89 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🌿</div>
+                    <div class="category-banner-name">Support</div>
+                    <div class="category-banner-count">34 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🛠️</div>
+                    <div class="category-banner-name">Tools</div>
+                    <div class="category-banner-count">156 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🚿</div>
+                    <div class="category-banner-name">Watering</div>
+                    <div class="category-banner-count">78 Products</div>
+                </a>
+                <a href="#" class="category-banner-item">
+                    <div class="category-banner-icon">🌺</div>
+                    <div class="category-banner-name">Seeds</div>
+                    <div class="category-banner-count">234 Products</div>
                 </a>
             </div>
         </div>
@@ -1632,18 +1723,6 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="newsletter-content">
-            <h3 class="newsletter-title">Stay Connected with Nature</h3>
-            <p class="newsletter-description">Subscribe to our newsletter for exclusive offers, gardening tips, and the latest updates on sustainable living.</p>
-            <div class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address">
-                <button class="newsletter-btn">Subscribe Now</button>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -1691,6 +1770,33 @@
             setTimeout(() => {
                 loading.classList.add('hidden');
             }, 1000);
+        });
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides
+        setInterval(nextSlide, 5000);
+
+        // Manual slide control
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
         });
 
         // Mobile Menu Toggle
@@ -1781,29 +1887,6 @@
             }
         });
 
-        // Newsletter Subscription
-        document.querySelector('.newsletter-btn').addEventListener('click', function() {
-            const email = document.querySelector('.newsletter-input').value.trim();
-            if (email && email.includes('@')) {
-                const originalText = this.textContent;
-                this.innerHTML = '✅ Subscribed!';
-                this.style.background = '#059669';
-                
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.background = 'white';
-                    document.querySelector('.newsletter-input').value = '';
-                }, 2000);
-                
-                // Show success message
-                setTimeout(() => {
-                    alert(`🎉 Welcome to G V Green family!\n\nThank you for subscribing with: ${email}\n\nYou'll receive our newsletter with exclusive offers and gardening tips.`);
-                }, 500);
-            } else {
-                alert('⚠️ Please enter a valid email address');
-            }
-        });
-
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', function() {
@@ -1837,7 +1920,7 @@
         });
 
         // Enhanced Card Interactions
-        document.querySelectorAll('.category-card, .product-card').forEach(card => {
+        document.querySelectorAll('.category-card, .product-card, .category-banner-item').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-15px) scale(1.02)';
             });
@@ -1852,7 +1935,7 @@
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.3;
             
-            document.querySelectorAll('.floating-leaf, .floating-plant').forEach((element, index) => {
+            document.querySelectorAll('.floating-shape').forEach((element, index) => {
                 const speed = 0.5 + (index * 0.2);
                 element.style.transform = `translateY(${rate * speed}px)`;
             });
@@ -1874,7 +1957,7 @@
         }, observerOptions);
 
         // Apply animation to sections
-        document.querySelectorAll('.category-card, .product-card, .feature-item, .faq-item').forEach(el => {
+        document.querySelectorAll('.category-card, .product-card, .feature-item, .faq-item, .category-banner-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
