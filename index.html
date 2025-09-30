@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G V Green - Premium Organic Products</title>
+    <title>G V Greens - Premium Gardening & Organic Products</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -14,1599 +14,1433 @@
         }
 
         :root {
-            --primary-green: #16a34a;
-            --secondary-green: #22c55e;
-            --accent-green: #4ade80;
-            --dark-green: #15803d;
-            --light-green: #dcfce7;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.8);
-            --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --primary-green: #2E7D32;
+            --secondary-green: #4CAF50;
+            --accent-green: #8BC34A;
+            --dark-green: #1B5E20;
+            --light-green: #E8F5E9;
+            --yellow: #FFC107;
+            --orange: #FF9800;
+            --red: #F44336;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-light: #9E9E9E;
+            --border-color: #E0E0E0;
+            --background: #FAFAFA;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(22, 163, 74, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, #0a2e0a 0%, #0d1f0d 30%, #0a0a0a 100%);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
             color: var(--text-primary);
-            overflow-x: hidden;
             line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Gardening Abstract Background Pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(34, 197, 94, 0.03) 35px, rgba(34, 197, 94, 0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(74, 222, 128, 0.02) 35px, rgba(74, 222, 128, 0.02) 70px);
-            z-index: -2;
-            animation: patternMove 30s linear infinite;
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
         }
 
-        @keyframes patternMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(70px, 70px); }
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Floating Gardening Elements */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .floating-shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 20s ease-in-out infinite;
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            background: radial-gradient(circle, var(--secondary-green), transparent);
-            border-radius: 50%;
-            animation-delay: 0s;
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            background: radial-gradient(circle, var(--accent-green), transparent);
-            border-radius: 50%;
-            animation-delay: 5s;
-        }
-
-        .shape-3 {
-            width: 250px;
-            height: 250px;
-            bottom: 20%;
-            left: 15%;
-            background: radial-gradient(circle, var(--primary-green), transparent);
-            border-radius: 50%;
-            animation-delay: 10s;
-        }
-
-        .shape-4 {
-            width: 150px;
-            height: 150px;
-            top: 30%;
-            right: 30%;
-            background: radial-gradient(circle, var(--dark-green), transparent);
-            border-radius: 50%;
-            animation-delay: 15s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
-            25% { transform: translate(30px, -50px) scale(1.1); opacity: 0.15; }
-            50% { transform: translate(-30px, -100px) scale(0.9); opacity: 0.05; }
-            75% { transform: translate(-50px, -50px) scale(1.05); opacity: 0.12; }
-        }
-
-        /* Glass Morphism Header */
+        /* Header */
         .header {
-            position: fixed;
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
             top: 0;
-            width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 46, 10, 0.8);
-            border-bottom: 1px solid var(--glass-border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .header.scrolled {
-            backdrop-filter: blur(30px) saturate(200%);
-            background: rgba(10, 46, 10, 0.95);
-            box-shadow: var(--shadow-light);
         }
 
         .header-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            height: 70px;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green), var(--primary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
             position: relative;
         }
 
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        .logo:hover::after {
+        .search-input {
             width: 100%;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 400px;
-            width: 100%;
-            display: none;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 0.8rem 2.5rem 0.8rem 1rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--text-primary);
-            font-size: 0.9rem;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: border-color 0.3s;
         }
 
-        .search-box:focus {
-            border-color: var(--secondary-green);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1), var(--shadow-light);
-            transform: translateY(-2px);
-        }
-
-        .search-box::placeholder {
-            color: var(--text-secondary);
+        .search-input:focus {
+            border-color: var(--primary-green);
         }
 
         .search-btn {
             position: absolute;
-            right: 8px;
+            right: 5px;
             top: 50%;
             transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            background: none;
             border: none;
-            border-radius: 50px;
-            padding: 0.6rem 0.8rem;
-            color: white;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: var(--shadow-light);
+            padding: 5px;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 15px;
         }
 
-        .action-btn {
-            position: relative;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
+        .header-action {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 12px;
+            position: relative;
         }
 
-        .action-btn:hover {
-            background: var(--secondary-green);
-            border-color: var(--accent-green);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-light);
+        .header-action-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
         }
 
         .cart-count {
             position: absolute;
-            top: -6px;
-            right: -6px;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
+            top: -5px;
+            right: -5px;
+            background-color: var(--red);
+            color: var(--white);
             border-radius: 50%;
             width: 18px;
             height: 18px;
-            font-size: 0.65rem;
-            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulse 2s infinite;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            width: 40px;
-            height: 40px;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle:hover {
-            background: var(--secondary-green);
-            border-color: var(--accent-green);
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background-color: var(--text-primary);
-            margin: 4px 0;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            font-size: 10px;
+            font-weight: 600;
         }
 
         /* Navigation */
         .navigation {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            margin-top: 70px;
-            transition: all 0.3s ease;
+            background-color: var(--primary-green);
+            position: sticky;
+            top: 70px;
+            z-index: 999;
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 0;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .nav-menu::-webkit-scrollbar {
-            display: none;
         }
 
         .nav-item {
             position: relative;
-            white-space: nowrap;
         }
 
         .nav-link {
             display: block;
-            padding: 1rem 1.2rem;
-            color: var(--text-primary);
+            padding: 15px 20px;
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .nav-link:hover::before {
-            left: 0;
+            transition: background-color 0.3s;
         }
 
         .nav-link:hover {
-            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section with Image Slideshow */
-        .hero {
-            min-height: 80vh;
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .nav-item:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .nav-dropdown-item:hover {
+            background-color: var(--light-green);
+        }
+
+        .nav-offers {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            padding: 0 20px;
+            color: var(--yellow);
+            font-weight: 600;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
             position: relative;
             overflow: hidden;
-            padding: 6rem 0 2rem;
-            margin-top: 70px;
         }
 
         .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            display: flex;
+            transition: transform 0.5s ease;
         }
 
         .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
+            min-width: 100%;
+            position: relative;
         }
 
         .hero-slide img {
             width: 100%;
-            height: 100%;
+            height: 400px;
             object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 46, 10, 0.8), rgba(0, 0, 0, 0.7));
-            z-index: 1;
         }
 
         .hero-content {
-            max-width: 1200px;
-            padding: 0 1rem;
-            z-index: 10;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--accent-green);
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            animation: slideInDown 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            max-width: 500px;
+            color: var(--white);
         }
 
         .hero-title {
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, 
-                var(--text-primary) 0%, 
-                var(--accent-green) 30%, 
-                var(--secondary-green) 60%, 
-                var(--primary-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
-        }
-
-        .btn {
-            position: relative;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--secondary-green);
+            color: var(--white);
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            color: white;
-            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
+        .hero-btn:hover {
+            background-color: var(--primary-green);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-light);
-        }
-
-        /* Slider Controls */
-        .slider-controls {
+        .hero-indicators {
             position: absolute;
-            bottom: 2rem;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 1rem;
-            z-index: 20;
+            gap: 10px;
         }
 
-        .slider-dot {
+        .hero-indicator {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s;
         }
 
-        .slider-dot.active {
-            background: var(--secondary-green);
-            transform: scale(1.2);
-        }
-
-        /* Category Products Banner */
-        .category-banner {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(21, 128, 61, 0.05));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .category-banner-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .category-banner-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .category-banner-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary), var(--secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .category-banner-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .category-banner-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .category-banner-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .category-banner-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(34, 197, 94, 0.3);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .category-banner-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .category-banner-item:hover .category-banner-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: var(--shadow-light);
-        }
-
-        .category-banner-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .category-banner-count {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Product Banner */
-        .product-banner {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-            border-radius: 20px;
-            margin: 2rem auto;
-            max-width: 1400px;
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .product-banner-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.7), rgba(21, 128, 61, 0.8));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .product-banner-content {
-            text-align: center;
-            color: white;
-            max-width: 800px;
-        }
-
-        .product-banner-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
-        }
-
-        .product-banner-description {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+        .hero-indicator.active {
+            background-color: var(--white);
         }
 
         /* Categories Section */
         .categories {
-            padding: 4rem 0;
-            position: relative;
+            padding: 40px 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
         .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary), var(--secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .categories-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .category-card {
-            position: relative;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--secondary-green), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .category-card:hover::before {
-            left: 100%;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(34, 197, 94, 0.3);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 2.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: var(--shadow-light);
-        }
-
-        .category-title {
-            font-size: 1.5rem;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 0.8rem;
             color: var(--text-primary);
         }
 
-        .category-description {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
+        .view-all {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-image {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-green);
+            font-size: 40px;
+        }
+
+        .category-name {
+            padding: 15px 10px;
+            font-weight: 500;
         }
 
         /* Products Section */
         .products {
-            padding: 4rem 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.02) 100%);
+            padding: 40px 0;
+            background-color: var(--white);
         }
 
         .products-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-            border-color: rgba(34, 197, 94, 0.3);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .product-image {
             height: 200px;
-            background: linear-gradient(135deg, 
-                rgba(74, 222, 128, 0.1), 
-                rgba(34, 197, 94, 0.1), 
-                rgba(22, 163, 74, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--secondary-green);
+            background-color: var(--light-green);
             position: relative;
             overflow: hidden;
         }
 
-        .product-image::before {
-            content: '';
+        .product-badge {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
-            animation: rotate 15s linear infinite;
+            top: 10px;
+            left: 10px;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 15px;
         }
 
-        .product-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
+        .product-name {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
             color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .product-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--secondary-green);
-            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .price-current {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        .price-original {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .price-discount {
+            font-size: 14px;
+            color: var(--red);
+            font-weight: 500;
         }
 
         .product-rating {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            gap: 5px;
+            margin-bottom: 15px;
         }
 
         .stars {
-            color: #fbbf24;
-            font-size: 1rem;
+            color: var(--yellow);
+        }
+
+        .rating-count {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
         .add-to-cart {
             width: 100%;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            color: white;
+            padding: 10px;
+            background-color: var(--secondary-green);
+            color: var(--white);
             border: none;
-            padding: 0.8rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            border-radius: 4px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: background-color 0.3s;
         }
 
         .add-to-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-light);
+            background-color: var(--primary-green);
         }
 
-        .add-to-cart:active {
-            transform: scale(0.98);
+        /* Banner Section */
+        .banner {
+            padding: 40px 0;
         }
 
-        .sale-badge {
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .banner-card {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+
+        .banner-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-content {
             position: absolute;
-            top: 0.8rem;
-            left: 0.8rem;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .banner-title {
+            font-size: 24px;
             font-weight: 700;
-            z-index: 10;
-            animation: pulse 2s infinite;
+            margin-bottom: 10px;
+        }
+
+        .banner-subtitle {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .banner-btn {
+            padding: 8px 20px;
+            background-color: var(--secondary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .banner-btn:hover {
+            background-color: var(--primary-green);
         }
 
         /* Features Section */
         .features {
-            padding: 4rem 0;
+            padding: 40px 0;
+            background-color: var(--white);
         }
 
         .features-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
 
         .feature-item {
             text-align: center;
-            padding: 1.5rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-light);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            color: white;
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-green);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover .feature-icon {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-light);
+            margin: 0 auto 15px;
+            font-size: 30px;
+            color: var(--primary-green);
         }
 
         .feature-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
             color: var(--text-primary);
         }
 
         .feature-description {
             color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 14px;
         }
 
-        /* FAQ Section */
-        .faq {
-            padding: 4rem 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.02) 100%);
+        /* Testimonials Section */
+        .testimonials {
+            padding: 40px 0;
         }
 
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .faq-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: var(--shadow-light);
-        }
-
-        .faq-question {
-            padding: 1.2rem 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            cursor: pointer;
+        .testimonials-slider {
             display: flex;
-            justify-content: space-between;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            scroll-snap-align: start;
+        }
+
+        .testimonial-header {
+            display: flex;
             align-items: center;
-            transition: all 0.3s ease;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
-        .faq-question:hover {
-            color: var(--secondary-green);
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary-green);
         }
 
-        .faq-icon {
-            transition: transform 0.3s ease;
+        .testimonial-info {
+            flex-grow: 1;
         }
 
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
+        .testimonial-name {
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+        .testimonial-rating {
+            color: var(--yellow);
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-answer-content {
-            padding: 0 1.5rem 1.2rem;
+        .testimonial-content {
             color: var(--text-secondary);
+            font-style: italic;
             line-height: 1.6;
-            font-size: 0.95rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 40px 0;
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-description {
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .newsletter-btn {
+            padding: 12px 25px;
+            background-color: var(--secondary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--dark-green);
         }
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #0a2e0a, #0d1f0d);
-            padding: 4rem 0 2rem;
-            border-top: 1px solid var(--glass-border);
+            background-color: #2C2C2C;
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
         .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .footer-section h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--secondary-green);
+        .footer-column h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .footer-section p,
-        .footer-section a {
-            color: var(--text-secondary);
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-green);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #CCCCCC;
             text-decoration: none;
-            line-height: 1.8;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: var(--secondary-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary-green);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .payment-method {
+            width: 50px;
+            height: 30px;
+            background-color: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            color: #CCCCCC;
+            font-size: 14px;
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
             .header-container {
-                grid-template-columns: auto 1fr auto;
-                gap: 1rem;
-                padding: 0 1rem;
+                flex-wrap: wrap;
             }
             
-            .search-container {
-                display: block;
+            .search-bar {
+                order: 3;
+                max-width: 100%;
+                margin: 15px 0 0;
             }
             
-            .navigation {
-                margin-top: 70px;
+            .nav-menu {
+                flex-wrap: wrap;
+            }
+            
+            .hero-content {
+                left: 30px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
             }
         }
 
         @media (max-width: 768px) {
-            .header-container {
-                grid-template-columns: auto 1fr auto;
-                height: 60px;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .search-container {
-                display: none;
-            }
-            
             .mobile-menu-toggle {
-                display: flex;
+                display: block;
             }
             
-            .navigation {
-                margin-top: 60px;
-                height: 0;
-                overflow: hidden;
-            }
-            
-            .navigation.active {
-                height: auto;
+            .nav-container {
+                position: relative;
             }
             
             .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-green);
                 flex-direction: column;
-                padding: 1rem 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
             }
             
-            .nav-item {
-                width: 100%;
+            .nav-menu.active {
+                max-height: 500px;
             }
             
-            .nav-link {
-                padding: 1rem;
-                text-align: center;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            .nav-dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: rgba(0, 0, 0, 0.1);
             }
             
-            .hero {
-                min-height: 70vh;
-                padding: 5rem 0 2rem;
+            .nav-offers {
+                padding: 15px 20px;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero-content {
+                left: 20px;
+                right: 20px;
             }
             
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
+            .hero-title {
+                font-size: 24px;
             }
             
-            .category-banner-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            .hero-subtitle {
+                font-size: 16px;
             }
             
-            .categories-grid,
-            .products-grid,
-            .features-grid {
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .banner-container {
                 grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 480px) {
-            .header-container {
-                padding: 0 0.5rem;
+        @media (max-width: 576px) {
+            .top-bar {
+                display: none;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .header-action span {
+                display: none;
             }
             
             .hero {
-                padding: 4rem 0 1rem;
+                height: 300px;
             }
             
-            .section-header {
-                margin-bottom: 2rem;
+            .hero-slide img {
+                height: 300px;
             }
             
-            .categories,
-            .products,
-            .features,
-            .faq {
-                padding: 3rem 0;
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
             
-            .category-banner {
-                padding: 3rem 0;
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .footer {
-                padding: 3rem 0 1.5rem;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
-            z-index: 9999;
-            transition: width 0.1s ease;
-        }
-
-        /* Loading Animation */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a2e0a, #0d1f0d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(34, 197, 94, 0.3);
-            border-top: 3px solid var(--secondary-green);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loading">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Gardening Abstract Background -->
-    <div class="floating-elements">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-left">
+                <span>📞 +91 98765 43210</span>
+                <span>✉️ info@gvgreens.com</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#">Track Order</a>
+                <a href="#">Store Locator</a>
+            </div>
+        </div>
     </div>
 
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="header">
         <div class="header-container">
-            <div class="logo">G V Green</div>
+            <a href="#" class="logo">
+                <div class="logo-icon">🌱</div>
+                G V Greens
+            </a>
             
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="Search premium organic products...">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for products, brands and more...">
                 <button class="search-btn">🔍</button>
             </div>
             
             <div class="header-actions">
-                <button class="action-btn" title="Account">👤</button>
-                <button class="action-btn" title="Wishlist">❤️</button>
-                <button class="action-btn" title="Cart">
-                    🛒
+                <a href="#" class="header-action">
+                    <span class="header-action-icon">👤</span>
+                    <span>Account</span>
+                </a>
+                <a href="#" class="header-action">
+                    <span class="header-action-icon">❤️</span>
+                    <span>Wishlist</span>
+                </a>
+                <a href="#" class="header-action">
+                    <span class="header-action-icon">🛒</span>
+                    <span>Cart</span>
                     <span class="cart-count">3</span>
+                </a>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-                <div class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="navigation" id="navigation">
+    <nav class="navigation">
         <div class="nav-container">
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link">New Arrivals</a></li>
-                <li class="nav-item"><a href="#categories" class="nav-link">Categories</a></li>
-                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Best Sellers</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Offers</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">All Categories</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-dropdown-item">Plants</a>
+                        <a href="#" class="nav-dropdown-item">Seeds</a>
+                        <a href="#" class="nav-dropdown-item">Pots & Planters</a>
+                        <a href="#" class="nav-dropdown-item">Soil & Fertilizers</a>
+                        <a href="#" class="nav-dropdown-item">Gardening Tools</a>
+                        <a href="#" class="nav-dropdown-item">Pest Control</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Plants</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-dropdown-item">Indoor Plants</a>
+                        <a href="#" class="nav-dropdown-item">Outdoor Plants</a>
+                        <a href="#" class="nav-dropdown-item">Flowering Plants</a>
+                        <a href="#" class="nav-dropdown-item">Medicinal Plants</a>
+                        <a href="#" class="nav-dropdown-item">Bonsai Plants</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Seeds</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-dropdown-item">Vegetable Seeds</a>
+                        <a href="#" class="nav-dropdown-item">Flower Seeds</a>
+                        <a href="#" class="nav-dropdown-item">Fruit Seeds</a>
+                        <a href="#" class="nav-dropdown-item">Herb Seeds</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Pots & Planters</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Soil & Fertilizers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Gardening Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Offers</a>
+                </li>
             </ul>
+            <div class="nav-offers">
+                🔥 Special Offers
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Image Slideshow -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-slider">
-            <div class="hero-slide active">
-                <img src="https://picsum.photos/seed/garden1/1920/1080.jpg" alt="Garden Scene 1">
+            <div class="hero-slide">
+                <img src="https://picsum.photos/seed/garden1/1200/400.jpg" alt="Garden Banner 1">
+                <div class="hero-content">
+                    <h1 class="hero-title">Transform Your Space with Greenery</h1>
+                    <p class="hero-subtitle">Get 30% off on all indoor plants this week</p>
+                    <a href="#" class="hero-btn">Shop Now</a>
+                </div>
             </div>
             <div class="hero-slide">
-                <img src="https://picsum.photos/seed/garden2/1920/1080.jpg" alt="Garden Scene 2">
+                <img src="https://picsum.photos/seed/garden2/1200/400.jpg" alt="Garden Banner 2">
+                <div class="hero-content">
+                    <h1 class="hero-title">Organic Gardening Essentials</h1>
+                    <p class="hero-subtitle">Premium quality seeds and fertilizers for your garden</p>
+                    <a href="#" class="hero-btn">Explore Collection</a>
+                </div>
             </div>
             <div class="hero-slide">
-                <img src="https://picsum.photos/seed/garden3/1920/1080.jpg" alt="Garden Scene 3">
-            </div>
-            <div class="hero-slide">
-                <img src="https://picsum.photos/seed/garden4/1920/1080.jpg" alt="Garden Scene 4">
+                <img src="https://picsum.photos/seed/garden3/1200/400.jpg" alt="Garden Banner 3">
+                <div class="hero-content">
+                    <h1 class="hero-title">Expert Gardening Tools</h1>
+                    <p class="hero-subtitle">Professional tools to make gardening easier</p>
+                    <a href="#" class="hero-btn">View Tools</a>
+                </div>
             </div>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge">✨ Premium Organic Collection</div>
-            <h1 class="hero-title">Nature's Finest Products</h1>
-            <p class="hero-subtitle">Discover our curated selection of premium organic products, sustainable solutions, and eco-friendly essentials that nurture both you and the environment.</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary">
-                    🌿 Explore Products
-                </a>
-                <a href="#categories" class="btn btn-secondary">
-                    📋 View Categories
-                </a>
-            </div>
-        </div>
-        <div class="slider-controls">
-            <span class="slider-dot active" data-slide="0"></span>
-            <span class="slider-dot" data-slide="1"></span>
-            <span class="slider-dot" data-slide="2"></span>
-            <span class="slider-dot" data-slide="3"></span>
+        <div class="hero-indicators">
+            <span class="hero-indicator active"></span>
+            <span class="hero-indicator"></span>
+            <span class="hero-indicator"></span>
         </div>
     </section>
-
-    <!-- Category Products Banner -->
-    <section class="category-banner">
-        <div class="category-banner-content">
-            <div class="category-banner-header">
-                <h2 class="category-banner-title">Shop by Category</h2>
-                <p class="category-banner-description">Browse our wide range of gardening essentials</p>
-            </div>
-            <div class="category-banner-grid">
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">💧</div>
-                    <div class="category-banner-name">Irrigation</div>
-                    <div class="category-banner-count">45 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🪴</div>
-                    <div class="category-banner-name">Planters</div>
-                    <div class="category-banner-count">128 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🪑</div>
-                    <div class="category-banner-name">Stands</div>
-                    <div class="category-banner-count">67 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🌱</div>
-                    <div class="category-banner-name">Soil</div>
-                    <div class="category-banner-count">89 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🌿</div>
-                    <div class="category-banner-name">Support</div>
-                    <div class="category-banner-count">34 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🛠️</div>
-                    <div class="category-banner-name">Tools</div>
-                    <div class="category-banner-count">156 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🚿</div>
-                    <div class="category-banner-name">Watering</div>
-                    <div class="category-banner-count">78 Products</div>
-                </a>
-                <a href="#" class="category-banner-item">
-                    <div class="category-banner-icon">🌺</div>
-                    <div class="category-banner-name">Seeds</div>
-                    <div class="category-banner-count">234 Products</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Banner -->
-    <div class="product-banner">
-        <img src="https://picsum.photos/seed/gardening-banner/1400/300.jpg" alt="Gardening Products Banner" class="product-banner-image">
-        <div class="product-banner-overlay">
-            <div class="product-banner-content">
-                <h2 class="product-banner-title">Summer Garden Sale</h2>
-                <p class="product-banner-description">Get up to 40% off on selected gardening essentials. Limited time offer!</p>
-                <a href="#products" class="btn btn-primary">Shop Now</a>
-            </div>
-        </div>
-    </div>
 
     <!-- Categories Section -->
-    <section class="categories" id="categories">
-        <div class="section-header">
-            <h2 class="section-title">Premium Categories</h2>
-            <p class="section-description">Explore our carefully curated categories of organic and sustainable products</p>
-        </div>
-        <div class="categories-grid">
-            <a href="#" class="category-card">
-                <div class="category-icon">💧</div>
-                <h3 class="category-title">Drip Irrigation Kit</h3>
-                <p class="category-description">Complete drip irrigation systems for efficient watering. Save water while keeping your plants perfectly hydrated.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🪴</div>
-                <h3 class="category-title">Pots & Planters</h3>
-                <p class="category-description">Stylish and functional pots and planters for all your indoor and outdoor gardening needs.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🪑</div>
-                <h3 class="category-title">Stands</h3>
-                <p class="category-description">Elegant plant stands to display your green beauties at the perfect height and angle.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🌱</div>
-                <h3 class="category-title">Soil & Fertilizers</h3>
-                <p class="category-description">Premium organic soil blends and natural fertilizers to nourish your plants from root to leaf.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🌿</div>
-                <h3 class="category-title">Plant Support</h3>
-                <p class="category-description">Trellises, stakes, and supports to help your plants grow strong and healthy.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🛠️</div>
-                <h3 class="category-title">Gardening Tools</h3>
-                <p class="category-description">Professional-grade, sustainable gardening tools made from eco-friendly materials.</p>
-            </a>
-            <a href="#" class="category-card">
-                <div class="category-icon">🚿</div>
-                <h3 class="category-title">Watering Equipment</h3>
-                <p class="category-description">Efficient watering solutions from cans to sprinklers for all your plant care needs.</p>
-            </a>
+    <section class="categories">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-image">🌱</div>
+                    <div class="category-name">Plants</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🌻</div>
+                    <div class="category-name">Seeds</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🪴</div>
+                    <div class="category-name">Pots & Planters</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🧪</div>
+                    <div class="category-name">Soil & Fertilizers</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🛠️</div>
+                    <div class="category-name">Gardening Tools</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🌿</div>
+                    <div class="name">Pest Control</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">💧</div>
+                    <div class="category-name">Watering</div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-image">🌺</div>
+                    <div class="category-name">Flowers</div>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="products" id="products">
-        <div class="section-header">
-            <h2 class="section-title">Featured Products</h2>
-            <p class="section-description">Our most popular and highly-rated organic products</p>
+    <!-- Featured Products Section -->
+    <section class="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">25% OFF</span>
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/plant1/220/200.jpg" alt="Product 1">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Premium Indoor Plant Collection</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹749</span>
+                            <span class="price-original">₹999</span>
+                            <span class="price-discount">25% OFF</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(248)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">NEW</span>
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/plant2/220/200.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Organic Vegetable Seeds Pack</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹299</span>
+                            <span class="price-original">₹399</span>
+                            <span class="price-discount">25% OFF</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="rating-count">(156)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/plant3/220/200.jpg" alt="Product 3">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Ceramic Planter Set of 3</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹1,299</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">15% OFF</span>
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/plant4/220/200.jpg" alt="Product 4">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Gardening Tool Set (5 Pieces)</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹849</span>
+                            <span class="price-original">₹999</span>
+                            <span class="price-discount">15% OFF</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="rating-count">(124)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/plant5/220/200.jpg" alt="Product 5">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Organic Fertilizer (1kg)</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹399</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(203)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="sale-badge">25% OFF</div>
-                <div class="product-image">🌱</div>
-                <div class="product-info">
-                    <h3 class="product-title">Premium Vegetable Seed Collection</h3>
-                    <div class="product-price">₹449 <span style="text-decoration: line-through; color: #666; font-size: 1rem; font-weight: 400;">₹599</span></div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(248 reviews)</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+    </section>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-container">
+            <div class="banner-card">
+                <img src="https://picsum.photos/seed/banner1/400/200.jpg" alt="Banner 1">
+                <div class="banner-content">
+                    <h3 class="banner-title">Gardening Essentials</h3>
+                    <p class="banner-subtitle">Everything you need to start your garden</p>
+                    <a href="#" class="banner-btn">Shop Now</a>
                 </div>
             </div>
-            
-            <div class="product-card">
-                <div class="product-image">🌿</div>
-                <div class="product-info">
-                    <h3 class="product-title">Monstera Deliciosa Plant</h3>
-                    <div class="product-price">₹899</div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(156 reviews)</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+            <div class="banner-card">
+                <img src="https://picsum.photos/seed/banner2/400/200.jpg" alt="Banner 2">
+                <div class="banner-content">
+                    <h3 class="banner-title">Indoor Plants</h3>
+                    <p class="banner-subtitle">Freshen up your living space</p>
+                    <a href="#" class="banner-btn">Shop Now</a>
                 </div>
             </div>
-            
-            <div class="product-card">
-                <div class="sale-badge">15% OFF</div>
-                <div class="product-image">🛠️</div>
-                <div class="product-info">
-                    <h3 class="product-title">Eco-Friendly Garden Tool Set</h3>
-                    <div class="product-price">₹1,699 <span style="text-decoration: line-through; color: #666; font-size: 1rem; font-weight: 400;">₹1,999</span></div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(324 reviews)</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+            <div class="banner-card">
+                <img src="https://picsum.photos/seed/banner3/400/200.jpg" alt="Banner 3">
+                <div class="banner-content">
+                    <h3 class="banner-title">Special Offers</h3>
+                    <p class="banner-subtitle">Up to 50% off on selected items</p>
+                    <a href="#" class="banner-btn">Shop Now</a>
                 </div>
             </div>
-            
-            <div class="product-card">
-                <div class="product-image">🌺</div>
-                <div class="product-info">
-                    <h3 class="product-title">Organic Plant Fertilizer</h3>
-                    <div class="product-price">₹599</div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(412 reviews)</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Best Sellers</h2>
+                <a href="#" class="view-all">View All →</a>
             </div>
-            
-            <div class="product-card">
-                <div class="product-image">🥬</div>
-                <div class="product-info">
-                    <h3 class="product-title">Organic Herb Garden Kit</h3>
-                    <div class="product-price">₹799</div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(189 reviews)</span>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">BESTSELLER</span>
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/best1/220/200.jpg" alt="Best Seller 1">
                     </div>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <div class="product-info">
+                        <h3 class="product-name">Money Plant with Pot</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹349</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(412)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="sale-badge">30% OFF</div>
-                <div class="product-image">♻️</div>
-                <div class="product-info">
-                    <h3 class="product-title">Bamboo Planters Set</h3>
-                    <div class="product-price">₹999 <span style="text-decoration: line-through; color: #666; font-size: 1rem; font-weight: 400;">₹1,429</span></div>
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span>(276 reviews)</span>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/best2/220/200.jpg" alt="Best Seller 2">
                     </div>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <div class="product-info">
+                        <h3 class="product-name">Bonsai Plant Kit</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹1,299</span>
+                            <span class="price-original">₹1,599</span>
+                            <span class="price-discount">19% OFF</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(287)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/best3/220/200.jpg" alt="Best Seller 3">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Hanging Planter</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹599</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="rating-count">(156)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/best4/220/200.jpg" alt="Best Seller 4">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Spray Bottle (500ml)</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹199</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(324)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <button class="product-wishlist">❤️</button>
+                        <img src="https://picsum.photos/seed/best5/220/200.jpg" alt="Best Seller 5">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Cactus Collection</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹799</span>
+                            <span class="price-original">₹999</span>
+                            <span class="price-discount">20% OFF</span>
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-count">(189)</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1614,376 +1448,242 @@
 
     <!-- Features Section -->
     <section class="features">
-        <div class="section-header">
-            <h2 class="section-title">Why Choose G V Green?</h2>
-            <p class="section-description">Experience the difference with our premium service and quality products</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">🚚</div>
-                <h3 class="feature-title">Free Express Delivery</h3>
-                <p class="feature-description">Complimentary express shipping on all orders above ₹999. Get your products delivered within 24-48 hours.</p>
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose G V Greens</h2>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">🔄</div>
-                <h3 class="feature-title">30-Day Returns</h3>
-                <p class="feature-description">Not satisfied? Return any product within 30 days for a full refund, no questions asked.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🌱</div>
-                <h3 class="feature-title">100% Organic Certified</h3>
-                <p class="feature-description">All our products are certified organic and sustainably sourced from trusted partners.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">💬</div>
-                <h3 class="feature-title">Expert Plant Care Support</h3>
-                <p class="feature-description">Get personalized advice from our plant experts via chat, email, or phone support.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h3 class="feature-title">Free Shipping</h3>
+                    <p class="feature-description">On all orders above ₹999</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Easy Returns</h3>
+                    <p class="feature-description">7-day return policy</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Best Prices</h3>
+                    <p class="feature-description">Quality products at affordable prices</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">100% Organic</h3>
+                    <p class="feature-description">Certified organic products</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="section-header">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-description">Find answers to common questions about G V Green products and services</p>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👩</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Priya Sharma</div>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "I'm absolutely delighted with my purchase from G V Greens. The plants were healthy and well-packaged. The customer service was exceptional too!"
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👨</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Rahul Verma</div>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "The quality of seeds I bought was excellent. Germination rate was almost 100%. Will definitely recommend G V Greens to all gardening enthusiasts."
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👩</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Anita Patel</div>
+                            <div class="testimonial-rating">⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "I love the variety of pots and planters available. They have transformed my balcony into a beautiful garden. Fast delivery and great packaging!"
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👨</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Vikram Singh</div>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "The gardening tools I purchased are of excellent quality. They make gardening so much easier. Great value for money!"
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
-                    What payment methods does G V Green accept?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        G V Green accepts all major credit cards, debit cards, net banking, UPI, and popular digital wallets including Paytm, Google Pay, and PhonePe. We also offer cash on delivery for orders below ₹5,000.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    How long does delivery take?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Standard delivery takes 5-7 business days, while express delivery takes 2-3 business days. For plants and live products, we use special shipping to ensure they arrive in perfect condition, which may take an additional day.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    Can I return or exchange products?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Yes, G V Green offers a 30-day return policy for most products. Plants can be returned within 7 days of delivery if they arrive damaged or unhealthy. Simply contact our customer service team to initiate a return or exchange.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    Are your products really organic?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Absolutely! All our organic products are certified by recognized authorities. We work directly with certified organic farmers and manufacturers to ensure the highest quality standards. Each product comes with proper certification information.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you provide gardening guidance?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Yes, G V Green offers comprehensive gardening support through our blog, video tutorials, and expert consultation services. You can schedule a virtual consultation with our horticulture experts for personalized gardening advice.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you ship plants all over India?
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        We ship plants to most major cities and towns across India. However, due to agricultural regulations, we cannot ship certain plant varieties to some states. Please check our shipping policy or contact customer service for specific location information.
-                    </div>
-                </div>
-            </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+            <p class="newsletter-description">Get the latest updates on new products and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>G V Green</h3>
-                <p>Your trusted partner in sustainable living. We're committed to providing the finest organic products while caring for our planet's future.</p>
-                <br>
-                <p>🌍 Growing green, living clean since 2010</p>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>G V Greens is your one-stop shop for all gardening needs. We offer a wide range of plants, seeds, tools, and accessories to help you create the perfect garden.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">i</a>
+                        <a href="#" class="social-link">y</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Customer Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>📍 No. 160, 2nd cross, Shiva Nivas, Krishna Garden, Bengaluru, Karnataka 560083</li>
+                        <li>📞 +91 98765 43210</li>
+                        <li>✉️ info@gvgreens.com</li>
+                        <li>🕒 Mon-Sat: 9:00 AM - 7:00 PM</li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#">About Us</a></p>
-                <p><a href="#">Contact Support</a></p>
-                <p><a href="#">Shipping & Returns</a></p>
-                <p><a href="#">Privacy Policy</a></p>
-                <p><a href="#">Terms of Service</a></p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 G V Greens. All Rights Reserved.</p>
             </div>
-            <div class="footer-section">
-                <h3>Product Categories</h3>
-                <p><a href="#">Drip Irrigation Kit</a></p>
-                <p><a href="#">Pots & Planters</a></p>
-                <p><a href="#">Stands</a></p>
-                <p><a href="#">Soil & Fertilizers</a></p>
-                <p><a href="#">Plant Support</a></p>
-                <p><a href="#">Gardening Tools</a></p>
-                <p><a href="#">Watering Equipment</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Get in Touch</h3>
-                <p>📍 No. 160, 2nd cross, Shiva Nivas, Krishna Garden, Incity layout, Dodda Kammanahalli, Bannerghatta Rd, Bengaluru, Karnataka 560083</p>
-                <p>📞 +91 98765 43210</p>
-                <p>✉️ hello@gvgreen.com</p>
-                <p>🕒 Mon-Sat: 9:00 AM - 7:00 PM</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 G V Green. All rights reserved. | Crafted with 💚 for a sustainable future</p>
         </div>
     </footer>
 
     <script>
-        // Loading Animation
-        window.addEventListener('load', function() {
-            const loading = document.getElementById('loading');
-            setTimeout(() => {
-                loading.classList.add('hidden');
-            }, 1000);
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
 
         // Hero Slider
-        let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.slider-dot');
-
+        const indicators = document.querySelectorAll('.hero-indicator');
+        let currentSlide = 0;
+        
         function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            slides.forEach(slide => slide.style.display = 'none');
+            indicators.forEach(indicator => indicator.classList.remove('active'));
             
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
+            slides[index].style.display = 'block';
+            indicators[index].classList.add('active');
         }
-
+        
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }
-
-        // Auto-advance slides
-        setInterval(nextSlide, 5000);
-
-        // Manual slide control
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navigation = document.getElementById('navigation');
         
-        mobileMenuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navigation.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenuToggle.classList.remove('active');
-                navigation.classList.remove('active');
+        // Initialize slider
+        showSlide(0);
+        setInterval(nextSlide, 5000);
+        
+        // Slider indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
             });
         });
 
-        // Scroll Progress Bar
-        window.addEventListener('scroll', function() {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrolled = window.pageYOffset;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrolled / maxScroll) * 100;
-            scrollProgress.style.width = progress + '%';
-        });
-
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.pageYOffset > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Enhanced Add to Cart
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
+        // Add to Cart
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
                 const cartCount = document.querySelector('.cart-count');
                 let count = parseInt(cartCount.textContent);
                 cartCount.textContent = count + 1;
                 
-                // Enhanced visual feedback
-                const originalText = this.textContent;
-                const originalBg = this.style.background;
-                
-                this.style.background = 'linear-gradient(135deg, #059669, #047857)';
-                this.innerHTML = '✅ Added to Cart!';
-                this.style.transform = 'scale(0.95)';
+                // Visual feedback
+                button.textContent = 'Added!';
+                button.style.backgroundColor = '#4CAF50';
                 
                 setTimeout(() => {
-                    this.style.background = originalBg;
-                    this.innerHTML = originalText;
-                    this.style.transform = 'scale(1)';
+                    button.textContent = 'Add to Cart';
+                    button.style.backgroundColor = '';
                 }, 1500);
-                
-                // Cart icon animation
-                const cartIcon = document.querySelector('.action-btn[title="Cart"]');
-                cartIcon.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    cartIcon.style.transform = 'scale(1)';
-                }, 200);
             });
         });
 
-        // Enhanced Search
-        const searchBox = document.querySelector('.search-box');
-        const searchBtn = document.querySelector('.search-btn');
+        // Wishlist
+        const wishlistButtons = document.querySelectorAll('.product-wishlist');
         
-        function performSearch() {
-            const searchTerm = searchBox.value.trim();
-            if (searchTerm) {
-                searchBtn.innerHTML = '⏳';
-                setTimeout(() => {
-                    alert(`🔍 Searching for "${searchTerm}"...\n\nFound 12 products matching your search!`);
-                    searchBtn.innerHTML = '🔍';
-                }, 800);
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.textContent === '❤️') {
+                    button.textContent = '💔';
+                    button.style.color = '#F44336';
+                } else {
+                    button.textContent = '❤️';
+                    button.style.color = '';
+                }
+            });
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.querySelector('.newsletter-input');
+            
+            if (emailInput.value) {
+                alert(`Thank you for subscribing with email: ${emailInput.value}`);
+                emailInput.value = '';
             }
-        }
-        
-        searchBtn.addEventListener('click', performSearch);
-        searchBox.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
         });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Enhanced Card Interactions
-        document.querySelectorAll('.category-card, .product-card, .category-banner-item').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Parallax Effect for Background Elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.3;
-            
-            document.querySelectorAll('.floating-shape').forEach((element, index) => {
-                const speed = 0.5 + (index * 0.2);
-                element.style.transform = `translateY(${rate * speed}px)`;
-            });
-        });
-
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Apply animation to sections
-        document.querySelectorAll('.category-card, .product-card, .feature-item, .faq-item, .category-banner-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
-        });
-
-        // Random product highlights
-        setInterval(() => {
-            const products = document.querySelectorAll('.product-card');
-            const randomProduct = products[Math.floor(Math.random() * products.length)];
-            
-            randomProduct.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.3)';
-            setTimeout(() => {
-                randomProduct.style.boxShadow = '';
-            }, 2000);
-        }, 10000);
-
-        // Console welcome message
-        console.log(`
-        🌿 Welcome to G V Green! 🌿
-        
-        Thanks for exploring our code!
-        Built with love for nature and sustainability.
-        
-        🌱 Growing green, living clean! 🌱
-        `);
     </script>
 </body>
 </html>
