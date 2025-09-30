@@ -60,6 +60,139 @@
             background: var(--dark-green);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--red);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-switch a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+
         /* Top Bar */
         .top-bar {
             background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
@@ -97,6 +230,7 @@
             align-items: center;
             gap: 8px;
             transition: opacity 0.3s;
+            cursor: pointer;
         }
 
         .top-bar a:hover {
@@ -224,6 +358,7 @@
             position: relative;
             transition: all 0.3s ease;
             padding: 5px;
+            cursor: pointer;
         }
 
         .header-action:hover {
@@ -353,21 +488,6 @@
             background-color: var(--light-green);
             color: var(--primary-green);
             padding-left: 25px;
-        }
-
-        .nav-offers {
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            color: var(--yellow);
-            font-weight: 600;
-            font-size: 15px;
-            animation: flash 2s infinite;
-        }
-
-        @keyframes flash {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
         }
 
         /* Mobile Menu Toggle */
@@ -722,6 +842,11 @@
 
         .product-wishlist:hover {
             transform: scale(1.1);
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+        .product-wishlist.active {
             background-color: var(--red);
             color: var(--white);
         }
@@ -1232,6 +1357,12 @@
             font-weight: 600;
             color: var(--text-primary);
             box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .footer-bottom {
@@ -1240,6 +1371,163 @@
             text-align: center;
             color: #CCCCCC;
             font-size: 14px;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 10001;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cart-checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Wishlist Sidebar */
+        .wishlist-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 10001;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wishlist-sidebar.active {
+            right: 0;
+        }
+
+        .wishlist-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--red), #D32F2F);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wishlist-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .wishlist-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .wishlist-empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
         }
 
         /* Responsive Design */
@@ -1338,11 +1626,6 @@
                 background-color: rgba(0, 0, 0, 0.1);
             }
             
-            .nav-offers {
-                padding: 18px 22px;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
             .hero {
                 margin-top: 70px;
             }
@@ -1391,6 +1674,11 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+            
+            .cart-sidebar, .wishlist-sidebar {
+                width: 100%;
+                right: -100%;
             }
         }
 
@@ -1512,12 +1800,101 @@
         <div class="loader"></div>
     </div>
 
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('loginModal')">&times;</span>
+            <h2 class="modal-title">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Enter your password" required>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+            <div class="form-switch">
+                Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('signupModal')">&times;</span>
+            <h2 class="modal-title">Create New Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" placeholder="Confirm your password" required>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the Terms & Conditions</label>
+                </div>
+                <button type="submit" class="form-btn">Sign Up</button>
+            </form>
+            <div class="form-switch">
+                Already have an account? <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="wishlist-header">
+            <h3>My Wishlist</h3>
+            <button class="wishlist-close" onclick="toggleWishlist()">&times;</button>
+        </div>
+        <div class="wishlist-items" id="wishlistItems">
+            <!-- Wishlist items will be dynamically added here -->
+        </div>
+    </div>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-container">
             <div class="top-bar-left">
-                <a href="#">📞 +91 98765 43210</a>
-                <a href="#">✉️ info@gvgreens.com</a>
+                <a href="tel:+919876543210">📞 +91 98765 43210</a>
+                <a href="mailto:info@gvgreens.com">✉️ info@gvgreens.com</a>
             </div>
             <div class="top-bar-right">
                 <a href="#">📍 Track Order</a>
@@ -1535,24 +1912,25 @@
             </a>
             
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search for products, brands and more...">
-                <button class="search-btn">🔍</button>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for products, brands and more...">
+                <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
             
             <div class="header-actions">
-                <a href="#" class="header-action">
+                <div class="header-action" onclick="openModal('loginModal')">
                     <span class="header-action-icon">👤</span>
                     <span>Account</span>
-                </a>
-                <a href="#" class="header-action">
+                </div>
+                <div class="header-action" onclick="toggleWishlist()">
                     <span class="header-action-icon">❤️</span>
                     <span>Wishlist</span>
-                </a>
-                <a href="#" class="header-action">
+                    <span class="cart-count" id="wishlistCount" style="display: none;">0</span>
+                </div>
+                <div class="header-action" onclick="toggleCart()">
                     <span class="header-action-icon">🛒</span>
                     <span>Cart</span>
-                    <span class="cart-count">3</span>
-                </a>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle">
                     <span></span>
                     <span></span>
@@ -1569,32 +1947,11 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">All Categories</a>
                     <div class="nav-dropdown">
-                        <a href="#" class="nav-dropdown-item">🌱 Plants</a>
-                        <a href="#" class="nav-dropdown-item">🌻 Seeds</a>
                         <a href="#" class="nav-dropdown-item">🪴 Pots & Planters</a>
                         <a href="#" class="nav-dropdown-item">🧪 Soil & Fertilizers</a>
                         <a href="#" class="nav-dropdown-item">🛠️ Gardening Tools</a>
                         <a href="#" class="nav-dropdown-item">🐛 Pest Control</a>
                         <a href="#" class="nav-dropdown-item">💧 Drip Irrigation Kit</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Plants</a>
-                    <div class="nav-dropdown">
-                        <a href="#" class="nav-dropdown-item">🏠 Indoor Plants</a>
-                        <a href="#" class="nav-dropdown-item">🌳 Outdoor Plants</a>
-                        <a href="#" class="nav-dropdown-item">🌺 Flowering Plants</a>
-                        <a href="#" class="nav-dropdown-item">🌿 Medicinal Plants</a>
-                        <a href="#" class="nav-dropdown-item">🎋 Bonsai Plants</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Seeds</a>
-                    <div class="nav-dropdown">
-                        <a href="#" class="nav-dropdown-item">🥬 Vegetable Seeds</a>
-                        <a href="#" class="nav-dropdown-item">🌹 Flower Seeds</a>
-                        <a href="#" class="nav-dropdown-item">🍎 Fruit Seeds</a>
-                        <a href="#" class="nav-dropdown-item">🌿 Herb Seeds</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -1609,13 +1966,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">Drip Irrigation</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Offers</a>
-                </li>
             </ul>
-            <div class="nav-offers">
-                🔥 Special Offers
-            </div>
         </div>
     </nav>
 
@@ -1669,14 +2020,6 @@
             </div>
             <div class="categories-grid">
                 <a href="#" class="category-card">
-                    <div class="category-image"><span>🌱</span></div>
-                    <div class="category-name">Plants</div>
-                </a>
-                <a href="#" class="category-card">
-                    <div class="category-image"><span>🌻</span></div>
-                    <div class="category-name">Seeds</div>
-                </a>
-                <a href="#" class="category-card">
                     <div class="category-image"><span>🪴</span></div>
                     <div class="category-name">Pots & Planters</div>
                 </a>
@@ -1711,101 +2054,8 @@
                 <h2 class="section-title">Featured Products</h2>
                 <a href="#" class="view-all">View All →</a>
             </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">25% OFF</span>
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/plant1/240/220.jpg" alt="Product 1">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Premium Indoor Plant Collection</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹749</span>
-                            <span class="price-original">₹999</span>
-                            <span class="price-discount">25% OFF</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(248)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">NEW</span>
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/plant2/240/220.jpg" alt="Product 2">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Organic Vegetable Seeds Pack</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹299</span>
-                            <span class="price-original">₹399</span>
-                            <span class="price-discount">25% OFF</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐</span>
-                            <span class="rating-count">(156)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/plant3/240/220.jpg" alt="Product 3">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Ceramic Planter Set of 3</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹1,299</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(89)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">15% OFF</span>
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/plant4/240/220.jpg" alt="Product 4">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Gardening Tool Set (5 Pieces)</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹849</span>
-                            <span class="price-original">₹999</span>
-                            <span class="price-discount">15% OFF</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐</span>
-                            <span class="rating-count">(124)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/plant5/240/220.jpg" alt="Product 5">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Organic Fertilizer (1kg)</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹399</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(203)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -1819,23 +2069,23 @@
                     <div class="banner-content">
                         <h3 class="banner-title">Gardening Essentials</h3>
                         <p class="banner-subtitle">Everything you need to start your garden</p>
-                        <a href="#" class="banner-btn">Shop Now</a>
+                        <a href="#products" class="banner-btn">Shop Now</a>
                     </div>
                 </div>
                 <div class="banner-card">
                     <img src="https://picsum.photos/seed/banner2/400/220.jpg" alt="Banner 2">
                     <div class="banner-content">
-                        <h3 class="banner-title">Indoor Plants</h3>
-                        <p class="banner-subtitle">Freshen up your living space</p>
-                        <a href="#" class="banner-btn">Shop Now</a>
+                        <h3 class="banner-title">Pots & Planters</h3>
+                        <p class="banner-subtitle">Stylish containers for your plants</p>
+                        <a href="#products" class="banner-btn">Shop Now</a>
                     </div>
                 </div>
                 <div class="banner-card">
                     <img src="https://picsum.photos/seed/banner3/400/220.jpg" alt="Banner 3">
                     <div class="banner-content">
-                        <h3 class="banner-title">Special Offers</h3>
-                        <p class="banner-subtitle">Up to 50% off on selected items</p>
-                        <a href="#" class="banner-btn">Shop Now</a>
+                        <h3 class="banner-title">Drip Irrigation</h3>
+                        <p class="banner-subtitle">Save water with smart irrigation</p>
+                        <a href="#products" class="banner-btn">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -1849,97 +2099,8 @@
                 <h2 class="section-title">Best Sellers</h2>
                 <a href="#" class="view-all">View All →</a>
             </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">BESTSELLER</span>
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/best1/240/220.jpg" alt="Best Seller 1">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Money Plant with Pot</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹349</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(412)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/best2/240/220.jpg" alt="Best Seller 2">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Bonsai Plant Kit</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹1,299</span>
-                            <span class="price-original">₹1,599</span>
-                            <span class="price-discount">19% OFF</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(287)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/best3/240/220.jpg" alt="Best Seller 3">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Hanging Planter</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹599</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐</span>
-                            <span class="rating-count">(156)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/best4/240/220.jpg" alt="Best Seller 4">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Spray Bottle (500ml)</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹199</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(324)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button class="product-wishlist">❤️</button>
-                        <img src="https://picsum.photos/seed/best5/240/220.jpg" alt="Best Seller 5">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Cactus Collection</h3>
-                        <div class="product-price">
-                            <span class="price-current">₹799</span>
-                            <span class="price-original">₹999</span>
-                            <span class="price-discount">20% OFF</span>
-                        </div>
-                        <div class="product-rating">
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                            <span class="rating-count">(189)</span>
-                        </div>
-                        <button class="add-to-cart"><span>Add to Cart</span></button>
-                    </div>
-                </div>
+            <div class="products-grid" id="bestSellersGrid">
+                <!-- Best sellers will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -1991,7 +2152,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        "I'm absolutely delighted with my purchase from G V Greens. The plants were healthy and well-packaged. The customer service was exceptional too!"
+                        "I'm absolutely delighted with my purchase from G V Greens. The products were high quality and well-packaged. The customer service was exceptional too!"
                     </div>
                 </div>
                 <div class="testimonial-card">
@@ -2003,7 +2164,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        "The quality of seeds I bought was excellent. Germination rate was almost 100%. Will definitely recommend G V Greens to all gardening enthusiasts."
+                        "The quality of gardening tools I bought was excellent. They make gardening so much easier. Will definitely recommend G V Greens to all gardening enthusiasts."
                     </div>
                 </div>
                 <div class="testimonial-card">
@@ -2027,7 +2188,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        "The gardening tools I purchased are of excellent quality. They make gardening so much easier. Great value for money!"
+                        "The drip irrigation system I purchased is working perfectly. It's saving so much water and time. Great value for money!"
                     </div>
                 </div>
             </div>
@@ -2052,12 +2213,28 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>About Us</h3>
-                    <p>G V Greens is your one-stop shop for all gardening needs. We offer a wide range of plants, seeds, tools, and accessories to help you create the perfect garden.</p>
+                    <p>G V Greens is your one-stop shop for all gardening needs. We offer a wide range of gardening tools, pots, fertilizers, and irrigation systems to help you create the perfect garden.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">f</a>
-                        <a href="#" class="social-link">t</a>
-                        <a href="#" class="social-link">i</a>
-                        <a href="#" class="social-link">y</a>
+                        <a href="https://facebook.com" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -2083,16 +2260,37 @@
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
+                        <li><a href="tel:+919876543210">📞 +91 98765 43210</a></li>
+                        <li><a href="mailto:info@gvgreens.com">✉️ info@gvgreens.com</a></li>
                         <li>📍 No. 160, 2nd cross, Shiva Nivas, Krishna Garden, Bengaluru, Karnataka 560083</li>
-                        <li>📞 +91 98765 43210</li>
-                        <li>✉️ info@gvgreens.com</li>
                         <li>🕒 Mon-Sat: 9:00 AM - 7:00 PM</li>
                     </ul>
                     <div class="payment-methods">
-                        <div class="payment-method">VISA</div>
-                        <div class="payment-method">MC</div>
-                        <div class="payment-method">UPI</div>
-                        <div class="payment-method">COD</div>
+                        <div class="payment-method">
+                            <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                                <rect width="40" height="25" rx="3" fill="#1A1F71"/>
+                                <text x="20" y="17" text-anchor="middle" fill="white" font-size="8" font-weight="bold">VISA</text>
+                            </svg>
+                        </div>
+                        <div class="payment-method">
+                            <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                                <rect width="40" height="25" rx="3" fill="#EB001B"/>
+                                <circle cx="15" cy="12.5" r="6" fill="#F79E1B"/>
+                                <circle cx="25" cy="12.5" r="6" fill="#EB001B"/>
+                            </svg>
+                        </div>
+                        <div class="payment-method">
+                            <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                                <rect width="40" height="25" rx="3" fill="#0099DF"/>
+                                <text x="20" y="17" text-anchor="middle" fill="white" font-size="7" font-weight="bold">UPI</text>
+                            </svg>
+                        </div>
+                        <div class="payment-method">
+                            <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                                <rect width="40" height="25" rx="3" fill="#2E7D32"/>
+                                <text x="20" y="17" text-anchor="middle" fill="white" font-size="7" font-weight="bold">COD</text>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2103,6 +2301,127 @@
     </footer>
 
     <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Premium Ceramic Planter Set",
+                price: 1299,
+                originalPrice: 1599,
+                discount: 19,
+                rating: 4.5,
+                reviews: 89,
+                badge: "BESTSELLER",
+                image: "https://picsum.photos/seed/ceramic/240/220.jpg"
+            },
+            {
+                id: 2,
+                name: "Organic Vermicompost (5kg)",
+                price: 399,
+                originalPrice: null,
+                discount: null,
+                rating: 4.8,
+                reviews: 203,
+                badge: null,
+                image: "https://picsum.photos/seed/compost/240/220.jpg"
+            },
+            {
+                id: 3,
+                name: "Drip Irrigation Kit - 50 Plants",
+                price: 2499,
+                originalPrice: 2999,
+                discount: 17,
+                rating: 4.6,
+                reviews: 124,
+                badge: "25% OFF",
+                image: "https://picsum.photos/seed/drip/240/220.jpg"
+            },
+            {
+                id: 4,
+                name: "Gardening Tool Set (8 Pieces)",
+                price: 849,
+                originalPrice: 999,
+                discount: 15,
+                rating: 4.4,
+                reviews: 156,
+                badge: null,
+                image: "https://picsum.photos/seed/tools/240/220.jpg"
+            },
+            {
+                id: 5,
+                name: "Hanging Basket Planter",
+                price: 599,
+                originalPrice: null,
+                discount: null,
+                rating: 4.7,
+                reviews: 78,
+                badge: "NEW",
+                image: "https://picsum.photos/seed/hanging/240/220.jpg"
+            }
+        ];
+
+        const bestSellers = [
+            {
+                id: 6,
+                name: "Smart Watering Timer",
+                price: 1299,
+                originalPrice: 1699,
+                discount: 24,
+                rating: 4.6,
+                reviews: 234,
+                badge: "HOT",
+                image: "https://picsum.photos/seed/timer/240/220.jpg"
+            },
+            {
+                id: 7,
+                name: "Organic Pesticide Spray",
+                price: 299,
+                originalPrice: null,
+                discount: null,
+                rating: 4.3,
+                reviews: 145,
+                badge: null,
+                image: "https://picsum.photos/seed/pesticide/240/220.jpg"
+            },
+            {
+                id: 8,
+                name: "Garden Hose Pipe (20m)",
+                price: 799,
+                originalPrice: 999,
+                discount: 20,
+                rating: 4.5,
+                reviews: 189,
+                badge: null,
+                image: "https://picsum.photos/seed/hose/240/220.jpg"
+            },
+            {
+                id: 9,
+                name: "Potting Mix (10kg)",
+                price: 449,
+                originalPrice: null,
+                discount: null,
+                rating: 4.7,
+                reviews: 267,
+                badge: "BESTSELLER",
+                image: "https://picsum.photos/seed/mix/240/220.jpg"
+            },
+            {
+                id: 10,
+                name: "LED Grow Light",
+                price: 1899,
+                originalPrice: 2299,
+                discount: 17,
+                rating: 4.4,
+                reviews: 98,
+                badge: null,
+                image: "https://picsum.photos/seed/light/240/220.jpg"
+            }
+        ];
+
+        // Cart and Wishlist data
+        let cart = [];
+        let wishlist = [];
+
         // Loading Animation
         window.addEventListener('load', function() {
             const loading = document.getElementById('loading');
@@ -2130,10 +2449,37 @@
             }
         });
 
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function switchModal(fromModal, toModal) {
+            closeModal(fromModal);
+            setTimeout(() => openModal(toModal), 300);
+        }
+
+        // Form Submissions
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Login successful! Welcome back.', 'success');
+            closeModal('loginModal');
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Account created successfully! Please login.', 'success');
+            closeModal('signupModal');
+            openModal('loginModal');
+        });
+
         // Hero Slider
         const slides = document.querySelectorAll('.hero-slide');
         const indicators = document.querySelectorAll('.hero-indicator');
-        const heroSlider = document.getElementById('heroSlider');
         let currentSlide = 0;
         
         function showSlide(index) {
@@ -2162,81 +2508,251 @@
             });
         });
 
-        // Add to Cart
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const cartCount = document.querySelector('.cart-count');
-                let count = parseInt(cartCount.textContent);
-                cartCount.textContent = count + 1;
-                
-                // Visual feedback
-                this.innerHTML = '<span>✓ Added!</span>';
-                this.style.background = 'linear-gradient(135deg, #4CAF50, #2E7D32)';
-                
-                setTimeout(() => {
-                    this.innerHTML = '<span>Add to Cart</span>';
-                    this.style.background = '';
-                }, 2000);
-                
-                // Cart animation
-                cartCount.style.transform = 'scale(1.3)';
-                setTimeout(() => {
-                    cartCount.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
-
-        // Wishlist
-        const wishlistButtons = document.querySelectorAll('.product-wishlist');
-        
-        wishlistButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if (button.textContent === '❤️') {
-                    button.textContent = '💔';
-                    button.style.color = '#F44336';
-                    button.style.backgroundColor = '#FFEBEE';
-                } else {
-                    button.textContent = '❤️';
-                    button.style.color = '';
-                    button.style.backgroundColor = '';
-                }
-            });
-        });
-
-        // Newsletter Form
-        const newsletterForm = document.getElementById('newsletterForm');
-        
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = document.querySelector('.newsletter-input');
+        // Search Functionality
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
             
-            if (emailInput.value) {
-                // Create success message
-                const successMsg = document.createElement('div');
-                successMsg.style.cssText = `
-                    position: fixed;
-                    top: 100px;
-                    right: 20px;
-                    background: linear-gradient(135deg, #4CAF50, #2E7D32);
-                    color: white;
-                    padding: 15px 25px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                    z-index: 10000;
-                    animation: slideInRight 0.3s ease;
-                `;
-                successMsg.textContent = `✓ Successfully subscribed with ${emailInput.value}`;
-                document.body.appendChild(successMsg);
-                
+            if (searchTerm) {
+                showNotification(`Searching for "${searchTerm}"...`, 'info');
+                // Simulate search results
                 setTimeout(() => {
-                    successMsg.remove();
-                }, 3000);
-                
-                emailInput.value = '';
+                    const results = products.filter(p => 
+                        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                    if (results.length > 0) {
+                        showNotification(`Found ${results.length} products matching "${searchTerm}"`, 'success');
+                    } else {
+                        showNotification(`No products found for "${searchTerm}"`, 'warning');
+                    }
+                }, 1000);
+            }
+        }
+
+        // Enter key search
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
             }
         });
+
+        // Load Products
+        function loadProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            const bestSellersGrid = document.getElementById('bestSellersGrid');
+            
+            productsGrid.innerHTML = products.map(product => createProductCard(product)).join('');
+            bestSellersGrid.innerHTML = bestSellers.map(product => createProductCard(product)).join('');
+        }
+
+        // Create Product Card
+        function createProductCard(product) {
+            const stars = '⭐'.repeat(Math.floor(product.rating));
+            return `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        <button class="product-wishlist ${wishlist.includes(product.id) ? 'active' : ''}" 
+                                onclick="toggleWishlistItem(${product.id})">
+                            ${wishlist.includes(product.id) ? '💔' : '❤️'}
+                        </button>
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">
+                            <span class="price-current">₹${product.price}</span>
+                            ${product.originalPrice ? `<span class="price-original">₹${product.originalPrice}</span>` : ''}
+                            ${product.discount ? `<span class="price-discount">${product.discount}% OFF</span>` : ''}
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">${stars}</span>
+                            <span class="rating-count">(${product.reviews})</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Cart Functions
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartSidebar.classList.toggle('active');
+            updateCartDisplay();
+        }
+
+        function addToCart(productId) {
+            const product = [...products, ...bestSellers].find(p => p.id === productId);
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartCount();
+                showNotification(`${product.name} added to cart!`, 'success');
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="wishlist-empty">Your cart is empty</div>';
+                cartTotal.textContent = '₹0';
+                return;
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price} x ${item.quantity}</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `₹${total}`;
+        }
+
+        // Wishlist Functions
+        function toggleWishlist() {
+            const wishlistSidebar = document.getElementById('wishlistSidebar');
+            wishlistSidebar.classList.toggle('active');
+            updateWishlistDisplay();
+        }
+
+        function toggleWishlistItem(productId) {
+            const index = wishlist.indexOf(productId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showNotification('Removed from wishlist', 'info');
+            } else {
+                wishlist.push(productId);
+                showNotification('Added to wishlist!', 'success');
+            }
+            updateWishlistCount();
+            loadProducts(); // Refresh to update heart icons
+        }
+
+        function updateWishlistCount() {
+            const count = wishlist.length;
+            const wishlistCount = document.getElementById('wishlistCount');
+            if (count > 0) {
+                wishlistCount.textContent = count;
+                wishlistCount.style.display = 'flex';
+            } else {
+                wishlistCount.style.display = 'none';
+            }
+        }
+
+        function updateWishlistDisplay() {
+            const wishlistItems = document.getElementById('wishlistItems');
+            const wishlistProducts = [...products, ...bestSellers].filter(p => wishlist.includes(p.id));
+            
+            if (wishlistProducts.length === 0) {
+                wishlistItems.innerHTML = '<div class="wishlist-empty">Your wishlist is empty</div>';
+                return;
+            }
+            
+            wishlistItems.innerHTML = wishlistProducts.map(product => `
+                <div class="cart-item">
+                    <img src="${product.image}" alt="${product.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${product.name}</div>
+                        <div class="cart-item-price">₹${product.price}</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="toggleWishlistItem(${product.id})">×</button>
+                </div>
+            `).join('');
+        }
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = e.target.querySelector('input[type="email"]');
+            showNotification(`Successfully subscribed with ${emailInput.value}!`, 'success');
+            emailInput.value = '';
+        });
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            const colors = {
+                success: 'linear-gradient(135deg, #4CAF50, #2E7D32)',
+                error: 'linear-gradient(135deg, #F44336, #D32F2F)',
+                warning: 'linear-gradient(135deg, #FF9800, #F57C00)',
+                info: 'linear-gradient(135deg, #2196F3, #1976D2)'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2252,44 +2768,10 @@
             });
         });
 
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Apply animation to elements
-        document.querySelectorAll('.category-card, .product-card, .feature-item, .testimonial-card, .banner-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
-        });
-
-        // Add CSS animation keyframe
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(50px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        // Initialize
+        loadProducts();
+        updateCartCount();
+        updateWishlistCount();
 
         // Console welcome message
         console.log('%c🌿 Welcome to G V Greens! 🌿', 'font-size: 20px; color: #4CAF50; font-weight: bold;');
