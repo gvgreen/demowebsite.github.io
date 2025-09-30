@@ -42,205 +42,177 @@
             overflow-x: hidden;
         }
 
-        /* Scrollbar Styling */
+        /* Enhanced Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--light-green);
+            background: linear-gradient(180deg, var(--light-green), var(--background));
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--primary-green);
-            border-radius: 5px;
+            background: linear-gradient(180deg, var(--primary-green), var(--dark-green));
+            border-radius: 6px;
+            border: 2px solid var(--white);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--dark-green);
+            background: linear-gradient(180deg, var(--secondary-green), var(--primary-green));
         }
 
-        /* Search Dropdown */
-        .search-dropdown {
-            position: absolute;
-            top: 100%;
+        ::-webkit-scrollbar-corner {
+            background: var(--light-green);
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Text Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 125, 50, 0.8);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            transform: translateX(-30px);
+        }
+
+        .animate-left.animated {
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            transform: translateX(30px);
+        }
+
+        .animate-right.animated {
+            transform: translateX(0);
+        }
+
+        .animate-scale {
+            transform: scale(0.8);
+        }
+
+        .animate-scale.animated {
+            transform: scale(1);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
             left: 0;
-            right: 0;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: var(--shadow-xl);
-            max-height: 400px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
-            margin-top: 10px;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-green), var(--secondary-green), var(--primary-green));
+            z-index: 10000;
+            transition: width 0.1s ease;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
         }
 
-        .search-dropdown.active {
-            display: block;
-        }
-
-        .search-dropdown-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .search-suggestion {
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .search-suggestion:hover {
-            background-color: var(--light-green);
-        }
-
-        .search-suggestion-image {
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .search-suggestion-details {
-            flex-grow: 1;
-        }
-
-        .search-suggestion-name {
-            font-weight: 500;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
-
-        .search-suggestion-price {
-            color: var(--primary-green);
-            font-weight: 600;
-        }
-
-        .search-suggestion-category {
-            font-size: 12px;
-            color: var(--text-secondary);
-            background-color: var(--light-green);
-            padding: 2px 8px;
-            border-radius: 12px;
-        }
-
-        .search-no-results {
-            padding: 30px;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        .search-see-all {
-            padding: 15px 20px;
-            text-align: center;
-            background-color: var(--light-green);
-            color: var(--primary-green);
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border-radius: 0 0 12px 12px;
-        }
-
-        .search-see-all:hover {
-            background-color: var(--secondary-green);
-            color: var(--white);
-        }
-
-        /* Search Results Page */
-        .search-results-page {
-            display: none;
-            padding: 40px 0;
-            background-color: var(--white);
-            min-height: 60vh;
-        }
-
-        .search-results-page.active {
-            display: block;
-        }
-
-        .search-results-header {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
-
-        .search-results-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-
-        .search-results-info {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-
-        .search-results-filters {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-bottom: 30px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .filter-chip {
-            padding: 8px 16px;
-            background-color: var(--light-green);
-            border: 2px solid transparent;
-            border-radius: 20px;
-            color: var(--primary-green);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-chip:hover {
-            background-color: var(--secondary-green);
-            color: var(--white);
-        }
-
-        .filter-chip.active {
-            background-color: var(--primary-green);
-            color: var(--white);
-            border-color: var(--dark-green);
-        }
-
-        .search-results-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
-        .clear-search {
-            padding: 8px 16px;
-            background-color: var(--red);
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
             color: var(--white);
             border: none;
-            border-radius: 20px;
-            font-weight: 500;
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
         }
 
-        .clear-search:hover {
-            background-color: #D32F2F;
-            transform: translateY(-2px);
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
         }
 
         /* Modal Styles */
@@ -274,18 +246,7 @@
             width: 90%;
             max-width: 400px;
             position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            animation: slideInScale 0.3s ease;
         }
 
         .modal-close {
@@ -730,18 +691,6 @@
             transform: translateY(-50%);
             max-width: 600px;
             color: var(--white);
-            animation: slideInLeft 1s ease;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .hero-badge {
@@ -768,6 +717,7 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
+            animation: glow 3s ease-in-out infinite;
         }
 
         .hero-subtitle {
@@ -832,9 +782,7 @@
         }
 
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
             margin-bottom: 40px;
         }
 
@@ -844,37 +792,26 @@
             color: var(--text-primary);
             position: relative;
             padding-bottom: 10px;
+            display: inline-block;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 4px;
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
             border-radius: 2px;
         }
 
-        .view-all {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: 600;
+        .section-description {
             font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border: 2px solid var(--primary-green);
-            border-radius: 20px;
-        }
-
-        .view-all:hover {
-            background-color: var(--primary-green);
-            color: var(--white);
-            transform: translateX(5px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 15px auto 0;
         }
 
         .categories-grid {
@@ -1272,10 +1209,144 @@
             line-height: 1.6;
         }
 
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--background), var(--light-green));
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .faq-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            border-radius: 2px;
+        }
+
+        .faq-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .faq-category {
+            padding: 10px 20px;
+            background: var(--white);
+            border: 2px solid var(--primary-green);
+            border-radius: 25px;
+            color: var(--primary-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-category:hover,
+        .faq-category.active {
+            background: var(--primary-green);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--light-green), var(--white));
+        }
+
+        .faq-question:hover {
+            color: var(--primary-green);
+            background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+        }
+
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
         /* Testimonials Section */
         .testimonials {
             padding: 60px 0;
-            background: linear-gradient(135deg, var(--background), var(--light-green));
+            background-color: var(--white);
         }
 
         .testimonials-slider {
@@ -1355,85 +1426,6 @@
             font-style: italic;
             line-height: 1.6;
             font-size: 15px;
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .newsletter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .newsletter-description {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: var(--shadow-lg);
-            border-radius: 25px;
-            overflow: hidden;
-        }
-
-        .newsletter-input {
-            flex-grow: 1;
-            padding: 15px 20px;
-            border: none;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .newsletter-btn {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--yellow), var(--orange));
-            color: var(--white);
-            border: none;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-btn:hover {
-            background: linear-gradient(135deg, var(--orange), #F57C00);
-            transform: scale(1.05);
         }
 
         /* Footer */
@@ -1909,12 +1901,6 @@
                 font-size: 14px;
             }
             
-            .section-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
             .section-title {
                 font-size: 24px;
             }
@@ -1927,17 +1913,13 @@
                 grid-template-columns: 1fr;
             }
             
-            .newsletter-form {
+            .faq-title {
+                font-size: 28px;
+            }
+            
+            .faq-categories {
                 flex-direction: column;
-                border-radius: 12px;
-            }
-            
-            .newsletter-input {
-                border-radius: 12px 12px 0 0;
-            }
-            
-            .newsletter-btn {
-                border-radius: 0 0 12px 12px;
+                align-items: center;
             }
         }
 
@@ -1982,6 +1964,12 @@
     <div class="loading-overlay" id="loading">
         <div class="loader"></div>
     </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
     <!-- Login Modal -->
     <div class="modal" id="loginModal">
@@ -2096,10 +2084,6 @@
             
             <div class="search-bar">
                 <input type="text" class="search-input" id="searchInput" placeholder="Search for products, brands and more...">
-                <div class="search-dropdown" id="searchDropdown">
-                    <div class="search-dropdown-header">Suggestions</div>
-                    <div id="searchSuggestions"></div>
-                </div>
                 <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
             
@@ -2157,27 +2141,8 @@
         </div>
     </nav>
 
-    <!-- Search Results Page -->
-    <div class="search-results-page" id="searchResultsPage">
-        <div class="search-results-header">
-            <h1 class="search-results-title" id="searchResultsTitle">Search Results</h1>
-            <p class="search-results-info" id="searchResultsInfo">Showing results for: </p>
-        </div>
-        <div class="search-results-filters">
-            <button class="filter-chip active" onclick="filterProducts('all')">All Products</button>
-            <button class="filter-chip" onclick="filterProducts('pots')">Pots & Planters</button>
-            <button class="filter-chip" onclick="filterProducts('tools')">Gardening Tools</button>
-            <button class="filter-chip" onclick="filterProducts('irrigation')">Drip Irrigation</button>
-            <button class="filter-chip" onclick="filterProducts('soil')">Soil & Fertilizers</button>
-            <button class="clear-search" onclick="clearSearch()">Clear Search</button>
-        </div>
-        <div class="search-results-grid" id="searchResultsGrid">
-            <!-- Search results will be displayed here -->
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section class="hero" id="heroSection">
+    <section class="hero">
         <div class="hero-slider" id="heroSlider">
             <div class="hero-slide">
                 <img src="https://picsum.photos/seed/garden1/1400/450.jpg" alt="Garden Banner 1">
@@ -2218,34 +2183,34 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="categories" id="categoriesSection">
+    <section class="categories">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2 class="section-title">Shop by Category</h2>
-                <a href="#" class="view-all">View All →</a>
+                <p class="section-description">Explore our wide range of gardening essentials</p>
             </div>
             <div class="categories-grid">
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>🪴</span></div>
                     <div class="category-name">Pots & Planters</div>
                 </a>
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>🧪</span></div>
                     <div class="category-name">Soil & Fertilizers</div>
                 </a>
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>🛠️</span></div>
                     <div class="category-name">Gardening Tools</div>
                 </a>
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>🌿</span></div>
                     <div class="category-name">Pest Control</div>
                 </a>
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>💧</span></div>
                     <div class="category-name">Drip Irrigation Kit</div>
                 </a>
-                <a href="#" class="category-card">
+                <a href="#" class="category-card animate-on-scroll">
                     <div class="category-image"><span>🌺</span></div>
                     <div class="category-name">Flowers</div>
                 </a>
@@ -2254,11 +2219,11 @@
     </section>
 
     <!-- Featured Products Section -->
-    <section class="products" id="productsSection">
+    <section class="products">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2 class="section-title">Featured Products</h2>
-                <a href="#" class="view-all">View All →</a>
+                <p class="section-description">Handpicked favorites from our collection</p>
             </div>
             <div class="products-grid" id="productsGrid">
                 <!-- Products will be dynamically loaded here -->
@@ -2270,7 +2235,7 @@
     <section class="banner">
         <div class="section-container">
             <div class="banner-container">
-                <div class="banner-card">
+                <div class="banner-card animate-on-scroll">
                     <img src="https://picsum.photos/seed/banner1/400/220.jpg" alt="Banner 1">
                     <div class="banner-content">
                         <h3 class="banner-title">Gardening Essentials</h3>
@@ -2278,7 +2243,7 @@
                         <a href="#products" class="banner-btn">Shop Now</a>
                     </div>
                 </div>
-                <div class="banner-card">
+                <div class="banner-card animate-on-scroll">
                     <img src="https://picsum.photos/seed/banner2/400/220.jpg" alt="Banner 2">
                     <div class="banner-content">
                         <h3 class="banner-title">Pots & Planters</h3>
@@ -2286,7 +2251,7 @@
                         <a href="#products" class="banner-btn">Shop Now</a>
                     </div>
                 </div>
-                <div class="banner-card">
+                <div class="banner-card animate-on-scroll">
                     <img src="https://picsum.photos/seed/banner3/400/220.jpg" alt="Banner 3">
                     <div class="banner-content">
                         <h3 class="banner-title">Drip Irrigation</h3>
@@ -2301,9 +2266,9 @@
     <!-- Best Sellers Section -->
     <section class="products">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2 class="section-title">Best Sellers</h2>
-                <a href="#" class="view-all">View All →</a>
+                <p class="section-description">Most loved products by our customers</p>
             </div>
             <div class="products-grid" id="bestSellersGrid">
                 <!-- Best sellers will be dynamically loaded here -->
@@ -2314,26 +2279,27 @@
     <!-- Features Section -->
     <section class="features">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2 class="section-title">Why Choose G V Greens</h2>
+                <p class="section-description">Experience the difference with our premium service</p>
             </div>
             <div class="features-grid">
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">🚚</div>
                     <h3 class="feature-title">Free Shipping</h3>
                     <p class="feature-description">On all orders above ₹999. Fast and reliable delivery to your doorstep.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">🔄</div>
                     <h3 class="feature-title">Easy Returns</h3>
                     <p class="feature-description">7-day hassle-free return policy. Your satisfaction is our priority.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">💰</div>
                     <h3 class="feature-title">Best Prices</h3>
                     <p class="feature-description">Quality products at affordable prices. Best value for your money.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">🌱</div>
                     <h3 class="feature-title">100% Organic</h3>
                     <p class="feature-description">Certified organic products. Safe for you and the environment.</p>
@@ -2342,14 +2308,228 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="faq-container">
+            <div class="faq-header animate-on-scroll">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <p class="faq-subtitle">Find answers to common questions about our products and services</p>
+            </div>
+            
+            <div class="faq-categories animate-on-scroll">
+                <button class="faq-category active" onclick="filterFAQ('all')">All FAQs</button>
+                <button class="faq-category" onclick="filterFAQ('general')">General</button>
+                <button class="faq-category" onclick="filterFAQ('orders')">Orders & Shipping</button>
+                <button class="faq-category" onclick="filterFAQ('products')">Products</button>
+                <button class="faq-category" onclick="filterFAQ('payments')">Payments</button>
+                <button class="faq-category" onclick="filterFAQ('returns')">Returns & Refunds</button>
+            </div>
+            
+            <div class="faq-list" id="faqList">
+                <div class="faq-item animate-on-scroll" data-category="general">
+                    <div class="faq-question">
+                        What is G V Greens?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            G V Greens is your one-stop online shop for all gardening needs. We offer a wide range of high-quality gardening products including pots, planters, soil, fertilizers, tools, irrigation systems, and more. Our mission is to make gardening accessible and enjoyable for everyone by providing premium products at affordable prices.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="general">
+                    <div class="faq-question">
+                        Where is G V Greens located?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our main office is located at: No. 160, 2nd cross, Shiva Nivas, Krishna Garden, Incity layout, Dodda Kammanahalli, Bannerghatta Rd, Bengaluru, Karnataka 560083. However, we are primarily an online store and deliver products across India.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="orders">
+                    <div class="faq-question">
+                        How can I place an order?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            You can place an order through our website in simple steps: 1) Browse our products and add items to your cart, 2) Click on the cart icon to review your order, 3) Proceed to checkout, 4) Enter your shipping details and payment information, 5) Confirm your order. You will receive an order confirmation via email.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="orders">
+                    <div class="faq-question">
+                        What are the delivery charges?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer free shipping on all orders above ₹999. For orders below ₹999, a nominal shipping charge of ₹50-100 may apply depending on your location. Delivery charges are calculated at checkout based on your pin code.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="orders">
+                    <div class="faq-question">
+                        How long does delivery take?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Standard delivery takes 5-7 business days. Express delivery (2-3 business days) is available for select locations. For plants and live products, we use special shipping to ensure they arrive in perfect condition, which may take an additional day.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="products">
+                    <div class="faq-question">
+                        Are your products genuine and of good quality?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, absolutely! We source all our products directly from manufacturers and trusted suppliers. Each product undergoes quality checks before being listed on our website. We stand behind the quality of every product we sell and offer a satisfaction guarantee.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="products">
+                    <div class="faq-question">
+                        Do you sell live plants?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, we offer a variety of live plants including indoor plants, outdoor plants, flowering plants, and medicinal plants. All our plants are carefully packaged to ensure they arrive healthy and in perfect condition at your doorstep.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="payments">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We accept all major payment methods including: Credit Cards (Visa, Mastercard, American Express), Debit Cards, Net Banking, UPI (Google Pay, PhonePe, Paytm), and Digital Wallets. We also offer Cash on Delivery (COD) for orders below ₹5,000.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="payments">
+                    <div class="faq-question">
+                        Is it safe to use my credit/debit card on your site?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, absolutely! We use industry-standard SSL encryption to protect your payment information. All transactions are processed through secure payment gateways that comply with the highest security standards. We do not store any card details on our servers.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="returns">
+                    <div class="faq-question">
+                        What is your return policy?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer a 7-day return policy for most products. If you're not satisfied with your purchase, you can initiate a return within 7 days of delivery. Plants can be returned within 48 hours if they arrive damaged or unhealthy. The product must be unused and in its original packaging.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="returns">
+                    <div class="faq-question">
+                        How do I initiate a return or refund?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            To initiate a return: 1) Contact our customer support at info@gvgreens.com or call +91 98765 43210, 2) Provide your order number and reason for return, 3) Our team will guide you through the return process. Once we receive the returned item, we'll process your refund within 5-7 business days.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="general">
+                    <div class="faq-question">
+                        Do you offer bulk discounts for large orders?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, we offer special discounts for bulk orders. For orders above 10 units of any product, please contact our sales team at info@gvgreens.com with your requirements, and we'll provide you with a custom quote.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="general">
+                    <div class="faq-question">
+                        How can I track my order?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Once your order is shipped, you'll receive a tracking number via email and SMS. You can track your order using this number on our website or the courier's website. You can also check your order status by logging into your account on our website.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="products">
+                    <div class="faq-question">
+                        Do you provide gardening guidance or support?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We provide comprehensive gardening support through our blog, video tutorials, and expert consultation services. You can schedule a virtual consultation with our horticulture experts for personalized gardening advice. We also have a dedicated customer support team to help with any queries.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="orders">
+                    <div class="faq-question">
+                        Can I cancel or modify my order after placing it?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, you can cancel or modify your order within 24 hours of placing it. After 24 hours, the order enters our fulfillment process and cannot be modified. To cancel or modify, please contact our customer support immediately with your order number.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll" data-category="general">
+                    <div class="faq-question">
+                        Do you have a physical store where I can see the products?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Currently, we operate primarily as an online store. However, you can visit our office in Bengaluru to see our product displays. We also participate in various gardening exhibitions and farmer markets across different cities. Follow our social media for updates on our physical presence.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header animate-on-scroll">
                 <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-description">Real reviews from our valued customers</p>
             </div>
             <div class="testimonials-slider">
-                <div class="testimonial-card">
+                <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">👩</div>
                         <div class="testimonial-info">
@@ -2361,7 +2541,7 @@
                         "I'm absolutely delighted with my purchase from G V Greens. The products were high quality and well-packaged. The customer service was exceptional too!"
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">👨</div>
                         <div class="testimonial-info">
@@ -2373,7 +2553,7 @@
                         "The quality of gardening tools I bought was excellent. They make gardening so much easier. Will definitely recommend G V Greens to all gardening enthusiasts."
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">👩</div>
                         <div class="testimonial-info">
@@ -2385,7 +2565,7 @@
                         "I love the variety of pots and planters available. They have transformed my balcony into a beautiful garden. Fast delivery and great packaging!"
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">👨</div>
                         <div class="testimonial-info">
@@ -2398,18 +2578,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="newsletter-container">
-            <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
-            <p class="newsletter-description">Get the latest updates on new products and exclusive offers</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
         </div>
     </section>
 
@@ -2433,7 +2601,7 @@
                         </a>
                         <a href="https://instagram.com" target="_blank" class="social-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.947-.07-4.358-.2-6.78-2.618-6.98-6.98-.059-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.196-4.354 2.617-6.78 6.979-6.98 1.281-.057 1.689-.07 4.948-.073 3.259 0 3.668.014 4.948.072 4.354.2 6.78 2.618 6.98 6.979.059 1.28.073 1.689.073 4.948 0 3.259-.014 3.667-.072 4.947-.196 4.354-2.617 6.782-6.979 6.98-1.281.059-1.69.073-4.949.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.07-3.26-.149-4.771-1.691-4.919-4.919-1.266-.058-1.644-.07-4.849-.07-3.204 0-3.584-.012-4.947-.07-4.358-.2-6.78-2.618-6.98-6.98-.059-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.07-4.354-.2-6.782-6.98-6.979-1.281-.057-1.689-.073-4.948-.073-3.259 0-3.584-.012-4.947-.07-4.354-.2-6.78-2.618-6.98-6.979-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
                             </svg>
                         </a>
                         <a href="https://youtube.com" target="_blank" class="social-link">
@@ -2501,7 +2669,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; © 2025 G V Trading Company | Powered by G V Greens | All Rights Reserved. | Designed with 💚 for garden lovers</p>
+                <p>&copy; 2025 G V Trading Company | Powered by G V Greens | All Rights Reserved.| Designed with 💚 for garden lovers</p>
             </div>
         </div>
     </footer>
@@ -2638,71 +2806,6 @@
                 image: "https://picsum.photos/seed/light/240/220.jpg",
                 category: "tools",
                 keywords: ["led", "grow", "light", "plant", "indoor"]
-            },
-            {
-                id: 11,
-                name: "Terracotta Pot Collection",
-                price: 899,
-                originalPrice: 1199,
-                discount: 25,
-                rating: 4.6,
-                reviews: 167,
-                badge: "SALE",
-                image: "https://picsum.photos/seed/terracotta/240/220.jpg",
-                category: "pots",
-                keywords: ["terracotta", "pot", "collection", "clay", "traditional"]
-            },
-            {
-                id: 12,
-                name: "Pruning Shears",
-                price: 349,
-                originalPrice: null,
-                discount: null,
-                rating: 4.5,
-                reviews: 234,
-                badge: null,
-                image: "https://picsum.photos/seed/shears/240/220.jpg",
-                category: "tools",
-                keywords: ["pruning", "shears", "cutters", "garden", "tools"]
-            },
-            {
-                id: 13,
-                name: "Micro Sprinkler System",
-                price: 1599,
-                originalPrice: 1999,
-                discount: 20,
-                rating: 4.7,
-                reviews: 89,
-                badge: null,
-                image: "https://picsum.photos/seed/sprinkler/240/220.jpg",
-                category: "irrigation",
-                keywords: ["sprinkler", "micro", "system", "water", "irrigation"]
-            },
-            {
-                id: 14,
-                name: "Bone Meal Fertilizer",
-                price: 299,
-                originalPrice: null,
-                discount: null,
-                rating: 4.4,
-                reviews: 123,
-                badge: null,
-                image: "https://picsum.photos/seed/bonemeal/240/220.jpg",
-                category: "soil",
-                keywords: ["bone", "meal", "fertilizer", "organic", "plant"]
-            },
-            {
-                id: 15,
-                name: "Garden Kneeling Pad",
-                price: 499,
-                originalPrice: 699,
-                discount: 29,
-                rating: 4.3,
-                reviews: 67,
-                badge: null,
-                image: "https://picsum.photos/seed/kneeling/240/220.jpg",
-                category: "tools",
-                keywords: ["kneeling", "pad", "garden", "comfort", "mat"]
             }
         ];
 
@@ -2713,8 +2816,6 @@
         // Cart and Wishlist data
         let cart = [];
         let wishlist = [];
-        let currentSearchResults = [];
-        let currentFilter = 'all';
 
         // Loading Animation
         window.addEventListener('load', function() {
@@ -2723,6 +2824,33 @@
                 loading.classList.add('hidden');
             }, 1000);
         });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrolled = window.pageYOffset;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxScroll) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         // Mobile Menu Toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -2802,152 +2930,27 @@
             });
         });
 
-        // Enhanced Search Functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchDropdown = document.getElementById('searchDropdown');
-        const searchSuggestions = document.getElementById('searchSuggestions');
-
-        // Live search suggestions
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.trim().toLowerCase();
-            
-            if (searchTerm.length > 0) {
-                const suggestions = allProducts.filter(product => 
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    product.keywords.some(keyword => keyword.includes(searchTerm))
-                ).slice(0, 5);
-                
-                if (suggestions.length > 0) {
-                    searchSuggestions.innerHTML = suggestions.map(product => `
-                        <div class="search-suggestion" onclick="selectProduct(${product.id})">
-                            <img src="${product.image}" alt="${product.name}" class="search-suggestion-image">
-                            <div class="search-suggestion-details">
-                                <div class="search-suggestion-name">${product.name}</div>
-                                <div class="search-suggestion-price">₹${product.price}</div>
-                            </div>
-                            <div class="search-suggestion-category">${product.category}</div>
-                        </div>
-                    `).join('');
-                    
-                    searchDropdown.classList.add('active');
-                } else {
-                    searchSuggestions.innerHTML = '<div class="search-no-results">No products found</div>';
-                    searchDropdown.classList.add('active');
-                }
-            } else {
-                searchDropdown.classList.remove('active');
-            }
-        });
-
-        // Close search dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
-                searchDropdown.classList.remove('active');
-            }
-        });
-
-        // Select product from search suggestions
-        function selectProduct(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            if (product) {
-                searchInput.value = product.name;
-                searchDropdown.classList.remove('active');
-                performSearch();
-            }
-        }
-
-        // Main search function
+        // Search Functionality
         function performSearch() {
+            const searchInput = document.getElementById('searchInput');
             const searchTerm = searchInput.value.trim();
             
             if (searchTerm) {
-                // Search products
-                currentSearchResults = allProducts.filter(product => 
+                const results = allProducts.filter(product => 
                     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     product.keywords.some(keyword => keyword.includes(searchTerm.toLowerCase()))
                 );
                 
-                // Show search results page
-                showSearchResults(searchTerm);
+                if (results.length > 0) {
+                    showNotification(`Found ${results.length} products matching "${searchTerm}"`, 'success');
+                } else {
+                    showNotification(`No products found for "${searchTerm}"`, 'warning');
+                }
             }
-        }
-
-        // Show search results page
-        function showSearchResults(searchTerm) {
-            const searchResultsPage = document.getElementById('searchResultsPage');
-            const searchResultsTitle = document.getElementById('searchResultsTitle');
-            const searchResultsInfo = document.getElementById('searchResultsInfo');
-            const searchResultsGrid = document.getElementById('searchResultsGrid');
-            
-            // Hide other sections
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('categoriesSection').style.display = 'none';
-            document.getElementById('productsSection').style.display = 'none';
-            
-            // Show search results page
-            searchResultsPage.classList.add('active');
-            
-            // Update search results header
-            searchResultsTitle.textContent = `Search Results for "${searchTerm}"`;
-            searchResultsInfo.textContent = `Found ${currentSearchResults.length} products`;
-            
-            // Display search results
-            displaySearchResults();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Display search results
-        function displaySearchResults() {
-            const searchResultsGrid = document.getElementById('searchResultsGrid');
-            
-            let filteredResults = currentSearchResults;
-            if (currentFilter !== 'all') {
-                filteredResults = currentSearchResults.filter(product => product.category === currentFilter);
-            }
-            
-            if (filteredResults.length === 0) {
-                searchResultsGrid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
-                        <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
-                        <h3 style="font-size: 24px; margin-bottom: 10px;">No products found</h3>
-                        <p>Try adjusting your search or filters</p>
-                    </div>
-                `;
-            } else {
-                searchResultsGrid.innerHTML = filteredResults.map(product => createProductCard(product)).join('');
-            }
-        }
-
-        // Filter products in search results
-        function filterProducts(category) {
-            currentFilter = category;
-            
-            // Update filter chips
-            document.querySelectorAll('.filter-chip').forEach(chip => {
-                chip.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Re-display filtered results
-            displaySearchResults();
-        }
-
-        // Clear search
-        function clearSearch() {
-            searchInput.value = '';
-            searchDropdown.classList.remove('active');
-            document.getElementById('searchResultsPage').classList.remove('active');
-            document.getElementById('heroSection').style.display = 'block';
-            document.getElementById('categoriesSection').style.display = 'block';
-            document.getElementById('productsSection').style.display = 'block';
-            currentSearchResults = [];
-            currentFilter = 'all';
         }
 
         // Enter key search
-        searchInput.addEventListener('keypress', (e) => {
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 performSearch();
             }
@@ -3103,13 +3106,24 @@
             `).join('');
         }
 
-        // Newsletter Form
-        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = e.target.querySelector('input[type="email"]');
-            showNotification(`Successfully subscribed with ${emailInput.value}!`, 'success');
-            emailInput.value = '';
-        });
+        // FAQ Filter Function
+        function filterFAQ(category) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const categories = document.querySelectorAll('.faq-category');
+            
+            // Update active category button
+            categories.forEach(cat => cat.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter FAQ items
+            faqItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
 
         // Notification System
         function showNotification(message, type = 'info') {
@@ -3171,6 +3185,27 @@
         `;
         document.head.appendChild(style);
 
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to elements
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -3192,7 +3227,7 @@
 
         // Console welcome message
         console.log('%c🌿 Welcome to G V Greens! 🌿', 'font-size: 20px; color: #4CAF50; font-weight: bold;');
-        console.log('%cEnhanced Search System Active', 'font-size: 14px; color: #2E7D32;');
+        console.log('%cEnhanced Scrolling & Animations Active', 'font-size: 14px; color: #2E7D32;');
     </script>
 </body>
 </html>
