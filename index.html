@@ -60,6 +60,189 @@
             background: var(--dark-green);
         }
 
+        /* Search Dropdown */
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .search-dropdown.active {
+            display: block;
+        }
+
+        .search-dropdown-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .search-suggestion {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .search-suggestion:hover {
+            background-color: var(--light-green);
+        }
+
+        .search-suggestion-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .search-suggestion-details {
+            flex-grow: 1;
+        }
+
+        .search-suggestion-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .search-suggestion-price {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .search-suggestion-category {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background-color: var(--light-green);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .search-no-results {
+            padding: 30px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .search-see-all {
+            padding: 15px 20px;
+            text-align: center;
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .search-see-all:hover {
+            background-color: var(--secondary-green);
+            color: var(--white);
+        }
+
+        /* Search Results Page */
+        .search-results-page {
+            display: none;
+            padding: 40px 0;
+            background-color: var(--white);
+            min-height: 60vh;
+        }
+
+        .search-results-page.active {
+            display: block;
+        }
+
+        .search-results-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .search-results-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .search-results-info {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .search-results-filters {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            background-color: var(--light-green);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            color: var(--primary-green);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-chip:hover {
+            background-color: var(--secondary-green);
+            color: var(--white);
+        }
+
+        .filter-chip.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-color: var(--dark-green);
+        }
+
+        .search-results-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .clear-search {
+            padding: 8px 16px;
+            background-color: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .clear-search:hover {
+            background-color: #D32F2F;
+            transform: translateY(-2px);
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -1913,6 +2096,10 @@
             
             <div class="search-bar">
                 <input type="text" class="search-input" id="searchInput" placeholder="Search for products, brands and more...">
+                <div class="search-dropdown" id="searchDropdown">
+                    <div class="search-dropdown-header">Suggestions</div>
+                    <div id="searchSuggestions"></div>
+                </div>
                 <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
             
@@ -1970,8 +2157,27 @@
         </div>
     </nav>
 
+    <!-- Search Results Page -->
+    <div class="search-results-page" id="searchResultsPage">
+        <div class="search-results-header">
+            <h1 class="search-results-title" id="searchResultsTitle">Search Results</h1>
+            <p class="search-results-info" id="searchResultsInfo">Showing results for: </p>
+        </div>
+        <div class="search-results-filters">
+            <button class="filter-chip active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-chip" onclick="filterProducts('pots')">Pots & Planters</button>
+            <button class="filter-chip" onclick="filterProducts('tools')">Gardening Tools</button>
+            <button class="filter-chip" onclick="filterProducts('irrigation')">Drip Irrigation</button>
+            <button class="filter-chip" onclick="filterProducts('soil')">Soil & Fertilizers</button>
+            <button class="clear-search" onclick="clearSearch()">Clear Search</button>
+        </div>
+        <div class="search-results-grid" id="searchResultsGrid">
+            <!-- Search results will be displayed here -->
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="heroSection">
         <div class="hero-slider" id="heroSlider">
             <div class="hero-slide">
                 <img src="https://picsum.photos/seed/garden1/1400/450.jpg" alt="Garden Banner 1">
@@ -2012,7 +2218,7 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="categories">
+    <section class="categories" id="categoriesSection">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Shop by Category</h2>
@@ -2048,7 +2254,7 @@
     </section>
 
     <!-- Featured Products Section -->
-    <section class="products" id="products">
+    <section class="products" id="productsSection">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Featured Products</h2>
@@ -2227,7 +2433,7 @@
                         </a>
                         <a href="https://instagram.com" target="_blank" class="social-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.947-.07-4.358-.2-6.78-2.618-6.98-6.98-.059-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.196-4.354 2.617-6.78 6.979-6.98 1.281-.057 1.689-.07 4.948-.073 3.259 0 3.668.014 4.948.072 4.354.2 6.78 2.618 6.98 6.979.059 1.28.073 1.689.073 4.948 0 3.259-.014 3.667-.072 4.947-.196 4.354-2.617 6.782-6.979 6.98-1.281.059-1.69.073-4.949.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
                             </svg>
                         </a>
                         <a href="https://youtube.com" target="_blank" class="social-link">
@@ -2295,14 +2501,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 G V Greens. All Rights Reserved. | Designed with 💚 for garden lovers</p>
+                <p>&copy; © 2025 G V Trading Company | Powered by G V Greens | All Rights Reserved. | Designed with 💚 for garden lovers</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Product data
-        const products = [
+        // Enhanced Product Database
+        const allProducts = [
             {
                 id: 1,
                 name: "Premium Ceramic Planter Set",
@@ -2312,7 +2518,9 @@
                 rating: 4.5,
                 reviews: 89,
                 badge: "BESTSELLER",
-                image: "https://picsum.photos/seed/ceramic/240/220.jpg"
+                image: "https://picsum.photos/seed/ceramic/240/220.jpg",
+                category: "pots",
+                keywords: ["ceramic", "planter", "pot", "set", "premium"]
             },
             {
                 id: 2,
@@ -2323,7 +2531,9 @@
                 rating: 4.8,
                 reviews: 203,
                 badge: null,
-                image: "https://picsum.photos/seed/compost/240/220.jpg"
+                image: "https://picsum.photos/seed/compost/240/220.jpg",
+                category: "soil",
+                keywords: ["vermicompost", "organic", "soil", "fertilizer", "compost"]
             },
             {
                 id: 3,
@@ -2334,7 +2544,9 @@
                 rating: 4.6,
                 reviews: 124,
                 badge: "25% OFF",
-                image: "https://picsum.photos/seed/drip/240/220.jpg"
+                image: "https://picsum.photos/seed/drip/240/220.jpg",
+                category: "irrigation",
+                keywords: ["drip", "irrigation", "kit", "water", "system"]
             },
             {
                 id: 4,
@@ -2345,7 +2557,9 @@
                 rating: 4.4,
                 reviews: 156,
                 badge: null,
-                image: "https://picsum.photos/seed/tools/240/220.jpg"
+                image: "https://picsum.photos/seed/tools/240/220.jpg",
+                category: "tools",
+                keywords: ["tools", "gardening", "set", "spade", "shovel"]
             },
             {
                 id: 5,
@@ -2356,11 +2570,10 @@
                 rating: 4.7,
                 reviews: 78,
                 badge: "NEW",
-                image: "https://picsum.photos/seed/hanging/240/220.jpg"
-            }
-        ];
-
-        const bestSellers = [
+                image: "https://picsum.photos/seed/hanging/240/220.jpg",
+                category: "pots",
+                keywords: ["hanging", "basket", "planter", "pot", "wall"]
+            },
             {
                 id: 6,
                 name: "Smart Watering Timer",
@@ -2370,7 +2583,9 @@
                 rating: 4.6,
                 reviews: 234,
                 badge: "HOT",
-                image: "https://picsum.photos/seed/timer/240/220.jpg"
+                image: "https://picsum.photos/seed/timer/240/220.jpg",
+                category: "irrigation",
+                keywords: ["timer", "watering", "smart", "automatic", "irrigation"]
             },
             {
                 id: 7,
@@ -2381,7 +2596,9 @@
                 rating: 4.3,
                 reviews: 145,
                 badge: null,
-                image: "https://picsum.photos/seed/pesticide/240/220.jpg"
+                image: "https://picsum.photos/seed/pesticide/240/220.jpg",
+                category: "soil",
+                keywords: ["pesticide", "organic", "spray", "pest", "control"]
             },
             {
                 id: 8,
@@ -2392,7 +2609,9 @@
                 rating: 4.5,
                 reviews: 189,
                 badge: null,
-                image: "https://picsum.photos/seed/hose/240/220.jpg"
+                image: "https://picsum.photos/seed/hose/240/220.jpg",
+                category: "irrigation",
+                keywords: ["hose", "pipe", "water", "garden", "20m"]
             },
             {
                 id: 9,
@@ -2403,7 +2622,9 @@
                 rating: 4.7,
                 reviews: 267,
                 badge: "BESTSELLER",
-                image: "https://picsum.photos/seed/mix/240/220.jpg"
+                image: "https://picsum.photos/seed/mix/240/220.jpg",
+                category: "soil",
+                keywords: ["potting", "mix", "soil", "fertilizer", "10kg"]
             },
             {
                 id: 10,
@@ -2414,13 +2635,86 @@
                 rating: 4.4,
                 reviews: 98,
                 badge: null,
-                image: "https://picsum.photos/seed/light/240/220.jpg"
+                image: "https://picsum.photos/seed/light/240/220.jpg",
+                category: "tools",
+                keywords: ["led", "grow", "light", "plant", "indoor"]
+            },
+            {
+                id: 11,
+                name: "Terracotta Pot Collection",
+                price: 899,
+                originalPrice: 1199,
+                discount: 25,
+                rating: 4.6,
+                reviews: 167,
+                badge: "SALE",
+                image: "https://picsum.photos/seed/terracotta/240/220.jpg",
+                category: "pots",
+                keywords: ["terracotta", "pot", "collection", "clay", "traditional"]
+            },
+            {
+                id: 12,
+                name: "Pruning Shears",
+                price: 349,
+                originalPrice: null,
+                discount: null,
+                rating: 4.5,
+                reviews: 234,
+                badge: null,
+                image: "https://picsum.photos/seed/shears/240/220.jpg",
+                category: "tools",
+                keywords: ["pruning", "shears", "cutters", "garden", "tools"]
+            },
+            {
+                id: 13,
+                name: "Micro Sprinkler System",
+                price: 1599,
+                originalPrice: 1999,
+                discount: 20,
+                rating: 4.7,
+                reviews: 89,
+                badge: null,
+                image: "https://picsum.photos/seed/sprinkler/240/220.jpg",
+                category: "irrigation",
+                keywords: ["sprinkler", "micro", "system", "water", "irrigation"]
+            },
+            {
+                id: 14,
+                name: "Bone Meal Fertilizer",
+                price: 299,
+                originalPrice: null,
+                discount: null,
+                rating: 4.4,
+                reviews: 123,
+                badge: null,
+                image: "https://picsum.photos/seed/bonemeal/240/220.jpg",
+                category: "soil",
+                keywords: ["bone", "meal", "fertilizer", "organic", "plant"]
+            },
+            {
+                id: 15,
+                name: "Garden Kneeling Pad",
+                price: 499,
+                originalPrice: 699,
+                discount: 29,
+                rating: 4.3,
+                reviews: 67,
+                badge: null,
+                image: "https://picsum.photos/seed/kneeling/240/220.jpg",
+                category: "tools",
+                keywords: ["kneeling", "pad", "garden", "comfort", "mat"]
             }
         ];
+
+        // Product arrays for different sections
+        const featuredProducts = allProducts.slice(0, 5);
+        const bestSellers = allProducts.slice(5, 10);
 
         // Cart and Wishlist data
         let cart = [];
         let wishlist = [];
+        let currentSearchResults = [];
+        let currentFilter = 'all';
 
         // Loading Animation
         window.addEventListener('load', function() {
@@ -2508,29 +2802,152 @@
             });
         });
 
-        // Search Functionality
-        function performSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchTerm = searchInput.value.trim();
+        // Enhanced Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        // Live search suggestions
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.trim().toLowerCase();
             
-            if (searchTerm) {
-                showNotification(`Searching for "${searchTerm}"...`, 'info');
-                // Simulate search results
-                setTimeout(() => {
-                    const results = products.filter(p => 
-                        p.name.toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                    if (results.length > 0) {
-                        showNotification(`Found ${results.length} products matching "${searchTerm}"`, 'success');
-                    } else {
-                        showNotification(`No products found for "${searchTerm}"`, 'warning');
-                    }
-                }, 1000);
+            if (searchTerm.length > 0) {
+                const suggestions = allProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.keywords.some(keyword => keyword.includes(searchTerm))
+                ).slice(0, 5);
+                
+                if (suggestions.length > 0) {
+                    searchSuggestions.innerHTML = suggestions.map(product => `
+                        <div class="search-suggestion" onclick="selectProduct(${product.id})">
+                            <img src="${product.image}" alt="${product.name}" class="search-suggestion-image">
+                            <div class="search-suggestion-details">
+                                <div class="search-suggestion-name">${product.name}</div>
+                                <div class="search-suggestion-price">₹${product.price}</div>
+                            </div>
+                            <div class="search-suggestion-category">${product.category}</div>
+                        </div>
+                    `).join('');
+                    
+                    searchDropdown.classList.add('active');
+                } else {
+                    searchSuggestions.innerHTML = '<div class="search-no-results">No products found</div>';
+                    searchDropdown.classList.add('active');
+                }
+            } else {
+                searchDropdown.classList.remove('active');
+            }
+        });
+
+        // Close search dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.remove('active');
+            }
+        });
+
+        // Select product from search suggestions
+        function selectProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (product) {
+                searchInput.value = product.name;
+                searchDropdown.classList.remove('active');
+                performSearch();
             }
         }
 
+        // Main search function
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Search products
+                currentSearchResults = allProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    product.keywords.some(keyword => keyword.includes(searchTerm.toLowerCase()))
+                );
+                
+                // Show search results page
+                showSearchResults(searchTerm);
+            }
+        }
+
+        // Show search results page
+        function showSearchResults(searchTerm) {
+            const searchResultsPage = document.getElementById('searchResultsPage');
+            const searchResultsTitle = document.getElementById('searchResultsTitle');
+            const searchResultsInfo = document.getElementById('searchResultsInfo');
+            const searchResultsGrid = document.getElementById('searchResultsGrid');
+            
+            // Hide other sections
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('categoriesSection').style.display = 'none';
+            document.getElementById('productsSection').style.display = 'none';
+            
+            // Show search results page
+            searchResultsPage.classList.add('active');
+            
+            // Update search results header
+            searchResultsTitle.textContent = `Search Results for "${searchTerm}"`;
+            searchResultsInfo.textContent = `Found ${currentSearchResults.length} products`;
+            
+            // Display search results
+            displaySearchResults();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Display search results
+        function displaySearchResults() {
+            const searchResultsGrid = document.getElementById('searchResultsGrid');
+            
+            let filteredResults = currentSearchResults;
+            if (currentFilter !== 'all') {
+                filteredResults = currentSearchResults.filter(product => product.category === currentFilter);
+            }
+            
+            if (filteredResults.length === 0) {
+                searchResultsGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+                        <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
+                        <h3 style="font-size: 24px; margin-bottom: 10px;">No products found</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                `;
+            } else {
+                searchResultsGrid.innerHTML = filteredResults.map(product => createProductCard(product)).join('');
+            }
+        }
+
+        // Filter products in search results
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Re-display filtered results
+            displaySearchResults();
+        }
+
+        // Clear search
+        function clearSearch() {
+            searchInput.value = '';
+            searchDropdown.classList.remove('active');
+            document.getElementById('searchResultsPage').classList.remove('active');
+            document.getElementById('heroSection').style.display = 'block';
+            document.getElementById('categoriesSection').style.display = 'block';
+            document.getElementById('productsSection').style.display = 'block';
+            currentSearchResults = [];
+            currentFilter = 'all';
+        }
+
         // Enter key search
-        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+        searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 performSearch();
             }
@@ -2541,7 +2958,7 @@
             const productsGrid = document.getElementById('productsGrid');
             const bestSellersGrid = document.getElementById('bestSellersGrid');
             
-            productsGrid.innerHTML = products.map(product => createProductCard(product)).join('');
+            productsGrid.innerHTML = featuredProducts.map(product => createProductCard(product)).join('');
             bestSellersGrid.innerHTML = bestSellers.map(product => createProductCard(product)).join('');
         }
 
@@ -2585,7 +3002,7 @@
         }
 
         function addToCart(productId) {
-            const product = [...products, ...bestSellers].find(p => p.id === productId);
+            const product = allProducts.find(p => p.id === productId);
             if (product) {
                 const existingItem = cart.find(item => item.id === productId);
                 if (existingItem) {
@@ -2651,7 +3068,7 @@
                 showNotification('Added to wishlist!', 'success');
             }
             updateWishlistCount();
-            loadProducts(); // Refresh to update heart icons
+            loadProducts();
         }
 
         function updateWishlistCount() {
@@ -2667,7 +3084,7 @@
 
         function updateWishlistDisplay() {
             const wishlistItems = document.getElementById('wishlistItems');
-            const wishlistProducts = [...products, ...bestSellers].filter(p => wishlist.includes(p.id));
+            const wishlistProducts = allProducts.filter(p => wishlist.includes(p.id));
             
             if (wishlistProducts.length === 0) {
                 wishlistItems.innerHTML = '<div class="wishlist-empty">Your wishlist is empty</div>';
@@ -2775,7 +3192,7 @@
 
         // Console welcome message
         console.log('%c🌿 Welcome to G V Greens! 🌿', 'font-size: 20px; color: #4CAF50; font-weight: bold;');
-        console.log('%cBuilt with love for garden enthusiasts', 'font-size: 14px; color: #2E7D32;');
+        console.log('%cEnhanced Search System Active', 'font-size: 14px; color: #2E7D32;');
     </script>
 </body>
 </html>
